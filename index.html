@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PragnyX Learning — Excel 360: Basic to Industry-Ready Professional Program</title>
+<meta name="description" content="Excel 360 by PragnyX Learning — a 1-month live learning journey from Excel fundamentals to Power Query, dashboards, MIS, automation, AI and real-world projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#f7f9f6;
+  --bg-1:#ffffff;
+  --bg-2:#eef2ed;
+  --panel:rgba(13,32,20,0.032);
+  --panel-hi:rgba(13,32,20,0.06);
+  --border:rgba(13,32,20,0.10);
+  --border-hi:rgba(13,32,20,0.18);
+  --ink:#0e1a12;
+  --muted:#54655a;
+  --muted-2:#8a988e;
+  --green-900:#0d3823;
+  --green-700:#15613a;
+  --green:#1e8a4c;
+  --green-bright:#157a45;
+  --green-glow:#0f6b3c;
+  --gold:#9c6f21;
+  --gold-dim:#a9843e;
+  --red:#c33f36;
+  --radius:18px;
+  --mono: 'JetBrains Mono', monospace;
+  --display: 'Space Grotesk', sans-serif;
+  --body: 'Inter', sans-serif;
+}
+/* Dark "device screen" scope — used only for the Excel/dashboard mockups,
+   trainer panel and presentation bar, so those keep reading as a UI
+   screenshot floating on the light page rather than the page itself going dark. */
+.dark-surface{
+  --panel:rgba(255,255,255,0.045);
+  --panel-hi:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.10);
+  --border-hi:rgba(255,255,255,0.18);
+  --ink:#f2f6f3;
+  --muted:#9bab9f;
+  --muted-2:#5f7168;
+  --green-bright:#3fcf7f;
+  --green-glow:#7dffb0;
+  --gold:#e7b34d;
+  background:#0b100d;
+  color:var(--ink);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(30,138,76,0.09), transparent 60%),
+    radial-gradient(900px 500px at 100% 10%, rgba(156,111,33,0.06), transparent 55%),
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--green-700); color:#fff;}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+.wrap{max-width:1240px; margin:0 auto; padding:0 28px;}
+h1,h2,h3,h4{font-family:var(--display); font-weight:600; letter-spacing:-0.02em; line-height:1.08;}
+.eyebrow{
+  font-family:var(--mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--green-bright); display:inline-flex; align-items:center; gap:8px; margin-bottom:18px;
+}
+.eyebrow::before{content:""; width:7px; height:7px; border-radius:2px; background:var(--green-bright); box-shadow:0 0 10px var(--green-glow);}
+.section{position:relative; padding:120px 0; border-top:1px solid var(--border);}
+.section-head{max-width:720px; margin-bottom:64px;}
+.section-head h2{font-size:clamp(30px,4vw,48px); margin-bottom:16px;}
+.section-head p{color:var(--muted); font-size:17px; max-width:600px;}
+.section-num{
+  position:absolute; top:110px; right:28px; font-family:var(--mono); font-size:13px; color:var(--muted-2);
+  writing-mode:vertical-rl; letter-spacing:0.1em;
+}
+.grid-bg{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(13,32,20,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,32,20,0.05) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(700px 400px at 50% 0%, black, transparent 75%);
+}
+.btn{
+  display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px;
+  font-weight:600; font-size:14.5px; cursor:pointer; border:1px solid transparent; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  font-family:var(--body);
+}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:linear-gradient(135deg,var(--green-bright),var(--green-700)); color:#04140b; box-shadow:0 8px 30px -8px rgba(63,207,127,0.55);}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 34px -8px rgba(63,207,127,0.7);}
+.btn-ghost{border-color:var(--border-hi); color:var(--ink); background:rgba(13,32,20,0.02);}
+.btn-ghost:hover{background:rgba(13,32,20,0.055); transform:translateY(-2px);}
+.pill{
+  font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--muted); border:1px solid var(--border);
+  padding:6px 12px; border-radius:100px; display:inline-flex; align-items:center; gap:6px; background:var(--panel);
+}
+.card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); backdrop-filter:blur(10px);}
+.card:hover{border-color:var(--border-hi); background:var(--panel-hi);}
+.glow-dot{width:6px; height:6px; border-radius:50%; background:var(--green-bright); box-shadow:0 0 8px var(--green-glow);}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.16,.8,.24,1), transform .8s cubic-bezier(.16,.8,.24,1);}
+.reveal.in{opacity:1; transform:translateY(0);}
+.reveal-scale{opacity:0; transform:scale(.92); transition:opacity .7s ease, transform .7s cubic-bezier(.16,.8,.24,1);}
+.reveal-scale.in{opacity:1; transform:scale(1);}
+.stagger > *{transition-delay:calc(var(--i,0) * 70ms);}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important;}
+  .reveal,.reveal-scale{opacity:1 !important; transform:none !important;}
+}
+
+/* ============ NAV ============ */
+#nav{
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  backdrop-filter:blur(14px); background:rgba(247,249,246,0.82); border-bottom:1px solid var(--border);
+  transition:transform .4s ease;
+}
+#nav .row{display:flex; align-items:center; justify-content:space-between; height:74px;}
+.brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:18px;}
+.brand .mark{
+  width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg,var(--green-bright),var(--green-900));
+  display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; font-weight:700; color:#04140b;
+}
+#nav nav{display:flex; gap:30px; align-items:center;}
+#nav nav a{font-size:14px; color:var(--muted); font-weight:500; transition:color .2s;}
+#nav nav a:hover{color:var(--ink);}
+.nav-cta{display:flex; align-items:center; gap:14px;}
+#navToggle{display:none;}
+
+/* ============ HERO ============ */
+#hero{padding:170px 0 100px; position:relative; overflow:hidden;}
+.hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:center;}
+.hero-tags{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 34px;}
+#hero h1{font-size:clamp(38px,5.4vw,64px); margin-bottom:22px;}
+#hero h1 .accent{color:var(--green-bright);}
+#hero p.lead{color:var(--muted); font-size:18px; max-width:520px; margin-bottom:34px;}
+.hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+.stat-row{display:flex; gap:36px; margin-top:52px; flex-wrap:wrap;}
+.stat{}
+.stat .num{font-family:var(--mono); font-size:30px; font-weight:700; color:var(--ink);}
+.stat .label{font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-top:2px;}
+
+/* ---- spreadsheet/dashboard visual ---- */
+.excel-visual{
+  position:relative; border-radius:20px; border:1px solid var(--border-hi); background:linear-gradient(160deg,#0e1512,#0a0f0c);
+  padding:18px; box-shadow:0 40px 90px -30px rgba(0,0,0,0.7);
+}
+.excel-titlebar{display:flex; align-items:center; justify-content:space-between; padding:2px 6px 14px; border-bottom:1px solid var(--border);}
+.excel-titlebar .dots{display:flex; gap:6px;}
+.excel-titlebar .dots span{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.15);}
+.excel-titlebar .fname{font-family:var(--mono); font-size:12px; color:var(--muted);}
+.formula-bar{display:flex; align-items:center; gap:8px; padding:10px 6px; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:12px; color:var(--green-bright);}
+.formula-bar .fx{color:var(--muted-2); font-style:italic;}
+.formula-typing{border-right:1px solid var(--green-bright); animation:blink 1s steps(1) infinite;}
+@keyframes blink{50%{border-color:transparent;}}
+.sheet{display:grid; grid-template-columns:26px repeat(5,1fr); gap:1px; background:var(--border); padding:1px; margin-top:10px; border-radius:8px; overflow:hidden;}
+.cell{background:#0b100d; font-family:var(--mono); font-size:11px; color:var(--muted); padding:8px 6px; min-height:14px; display:flex; align-items:center;}
+.cell.head{background:#101a15; color:var(--muted-2); font-size:10px; justify-content:center;}
+.cell.rowhead{background:#101a15; color:var(--muted-2); font-size:10px; justify-content:center;}
+.cell.hl{background:rgba(63,207,127,0.14); color:var(--green-glow); font-weight:600;}
+.cell.gold{color:var(--gold);}
+.kpi-row{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px;}
+.kpi{background:linear-gradient(160deg,rgba(63,207,127,0.09),rgba(63,207,127,0.02)); border:1px solid var(--border); border-radius:10px; padding:10px 12px;}
+.kpi .l{font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+.kpi .v{font-family:var(--mono); font-size:18px; font-weight:700; color:var(--green-glow); margin-top:2px;}
+.kpi .v.gold{color:var(--gold);}
+.mini-chart{display:flex; align-items:flex-end; gap:4px; height:46px; margin-top:14px; padding:0 2px;}
+.mini-chart i{flex:1; background:linear-gradient(180deg,var(--green-bright),var(--green-900)); border-radius:3px 3px 0 0; animation:growBar 1.6s ease-out both;}
+@keyframes growBar{from{transform:scaleY(0); transform-origin:bottom;} to{transform:scaleY(1);}}
+.float-chip{
+  position:absolute; font-family:var(--mono); font-size:12px; padding:8px 12px; border-radius:10px;
+  background:rgba(13,20,16,0.9); border:1px solid var(--border-hi); backdrop-filter:blur(8px); animation:floaty 5s ease-in-out infinite;
+  box-shadow:0 12px 30px -10px rgba(0,0,0,0.6);
+}
+@keyframes floaty{0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);}}
+
+/* ============ REALITY PIPELINE ============ */
+.pipe{display:flex; align-items:center; flex-wrap:wrap; gap:0; margin-top:20px;}
+.pipe-step{
+  display:flex; flex-direction:column; align-items:center; gap:10px; min-width:132px; text-align:center;
+}
+.pipe-step .icon{
+  width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+  background:var(--panel); border:1px solid var(--border); color:var(--green-bright);
+}
+.pipe-step .t{font-size:13px; font-weight:600;}
+.pipe-arrow{flex:1; min-width:24px; display:flex; align-items:center; justify-content:center; color:var(--muted-2);}
+.pipe-arrow svg{animation:arrowPulse 2.4s ease-in-out infinite;}
+@keyframes arrowPulse{0%,100%{opacity:.35;} 50%{opacity:1;}}
+.quote-block{
+  margin-top:56px; border-left:2px solid var(--green-bright); padding:22px 28px; background:var(--panel);
+  border-radius:0 14px 14px 0; font-family:var(--display); font-size:20px; color:var(--ink); max-width:760px;
+}
+.quote-block span{color:var(--muted); font-family:var(--body); font-size:13px; display:block; margin-top:10px;}
+
+/* ============ WHO USES GRID ============ */
+.who-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+.who-card{padding:24px 20px; border-radius:16px;}
+.who-card .icn{width:40px; height:40px; border-radius:11px; background:var(--green-900); color:var(--green-glow); display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+.who-card h4{font-size:15.5px; margin-bottom:6px;}
+.who-card p{font-size:13px; color:var(--muted);}
+
+/* ============ ROADMAP ============ */
+.roadmap{position:relative; padding-left:2px;}
+.roadmap-line{position:absolute; left:27px; top:10px; bottom:10px; width:2px; background:linear-gradient(180deg,var(--green-bright),var(--green-900) 90%);}
+.rm-item{display:flex; gap:22px; padding:16px 0; position:relative;}
+.rm-num{
+  width:56px; height:56px; border-radius:50%; background:var(--bg-2); border:1px solid var(--border-hi); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; color:var(--green-bright); z-index:1; font-size:13px;
+}
+.rm-body{padding-top:8px;}
+.rm-body .lv{font-family:var(--mono); font-size:11px; color:var(--muted-2); letter-spacing:.1em;}
+.rm-body h4{font-size:17px; margin-top:2px;}
+
+/* ============ CURRICULUM ACCORDION ============ */
+.acc-item{border:1px solid var(--border); border-radius:16px; margin-bottom:12px; overflow:hidden; background:var(--panel);}
+.acc-head{display:flex; align-items:center; justify-content:space-between; padding:22px 26px; cursor:pointer; gap:16px;}
+.acc-head:hover{background:rgba(13,32,20,0.035);}
+.acc-left{display:flex; align-items:center; gap:18px;}
+.acc-mod{font-family:var(--mono); font-size:12px; color:var(--green-bright); border:1px solid var(--green-700); padding:4px 10px; border-radius:100px; flex-shrink:0;}
+.acc-title h4{font-size:16.5px;}
+.acc-title p{font-size:12.5px; color:var(--muted); margin-top:2px;}
+.acc-chev{transition:transform .35s ease; color:var(--muted); flex-shrink:0;}
+.acc-item.open .acc-chev{transform:rotate(180deg);}
+.acc-body{max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.16,.8,.24,1);}
+.acc-body-inner{padding:0 26px 26px; display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+.topic-group h5{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+.chip-row{display:flex; flex-wrap:wrap; gap:7px;}
+.chip{font-family:var(--mono); font-size:12px; background:rgba(13,32,20,0.04); border:1px solid var(--border); color:var(--muted); padding:5px 10px; border-radius:8px;}
+
+/* ============ DASHBOARD PREVIEW ============ */
+.dash-mock{border:1px solid var(--border-hi); border-radius:18px; background:linear-gradient(160deg,#0e1512,#090d0b); padding:22px; box-shadow:0 30px 80px -30px rgba(0,0,0,.7);}
+.dash-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;}
+.dash-kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px;}
+.dash-kpis .kpi{padding:14px;}
+.dash-charts{display:grid; grid-template-columns:1.3fr 1fr; gap:14px;}
+.chart-box{border:1px solid var(--border); border-radius:12px; padding:16px; background:rgba(255,255,255,0.02);}
+.chart-box h5{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:12px; font-family:var(--mono);}
+.bars{display:flex; align-items:flex-end; gap:8px; height:110px;}
+.bars i{flex:1; border-radius:4px 4px 0 0; background:linear-gradient(180deg,var(--green-bright),var(--green-900)); animation:growBar 1.4s ease-out both;}
+.donut{width:110px; height:110px; border-radius:50%; margin:6px auto; background:conic-gradient(var(--green-bright) 0 62%, var(--gold) 62% 84%, rgba(255,255,255,0.08) 84% 100%); position:relative;}
+.donut::after{content:""; position:absolute; inset:16px; border-radius:50%; background:#0c110e;}
+.dash-list{list-style:none; font-size:12.5px; color:var(--muted); display:flex; flex-direction:column; gap:9px;}
+.dash-list li{display:flex; justify-content:space-between;}
+.dash-list b{color:var(--ink); font-weight:600;}
+.dashtype-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:22px;}
+
+/* ============ PIPELINE (power query / mis / capstone) ============ */
+.flowline{display:flex; align-items:center; flex-wrap:wrap; gap:0; margin:34px 0;}
+.flow-node{background:var(--panel); border:1px solid var(--border-hi); border-radius:12px; padding:14px 18px; font-family:var(--mono); font-size:13px; color:var(--ink); text-align:center;}
+.flow-node.accent{border-color:var(--green-700); color:var(--green-bright); background:rgba(63,207,127,0.08);}
+.flow-arrow{color:var(--muted-2); padding:0 10px; font-size:16px;}
+.flow-vert{display:flex; flex-direction:column; gap:0; align-items:flex-start;}
+.flow-vert .flow-node{width:100%;}
+.flow-vert .flow-arrow{padding:6px 0 6px 24px;}
+
+/* ============ PROJECTS ============ */
+.proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.proj-card{padding:28px; border-radius:18px; position:relative;}
+.proj-card .pnum{font-family:var(--mono); font-size:12px; color:var(--gold); letter-spacing:.1em;}
+.proj-card h4{font-size:19px; margin:10px 0 12px;}
+.proj-flow{font-family:var(--mono); font-size:11.5px; color:var(--muted); line-height:1.7;}
+
+/* ============ CAPSTONE ============ */
+.capstone{border:1px solid var(--green-700); border-radius:24px; background:linear-gradient(150deg, rgba(63,207,127,0.08), rgba(231,179,77,0.03)); padding:52px;}
+.cap-badges{display:flex; gap:12px; flex-wrap:wrap; margin:22px 0 8px;}
+
+/* ============ CHECKLIST ============ */
+.check-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+.check-item{display:flex; align-items:flex-start; gap:12px; padding:16px 18px; border-radius:12px;}
+.check-item .tick{width:22px; height:22px; border-radius:50%; background:var(--green-900); color:var(--green-glow); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;}
+
+/* ============ BEFORE/AFTER ============ */
+.ba-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+.ba-col{border-radius:20px; padding:32px;}
+.ba-col.before{border:1px solid rgba(226,100,92,0.35); background:rgba(226,100,92,0.05);}
+.ba-col.after{border:1px solid var(--green-700); background:rgba(63,207,127,0.07);}
+.ba-col h3{margin-bottom:20px; font-size:20px;}
+.ba-col ul{list-style:none; display:flex; flex-direction:column; gap:12px;}
+.ba-col li{display:flex; gap:10px; font-size:14.5px; align-items:flex-start;}
+.ba-col.before li{color:#d99a95;}
+.ba-col.after li{color:#c9f2d8;}
+
+/* ============ FORMATS ============ */
+.fmt-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.fmt-card{padding:34px 28px; border-radius:20px; position:relative;}
+.fmt-card.highlight{border-color:var(--green-700); background:linear-gradient(160deg, rgba(63,207,127,0.1), var(--panel));}
+.fmt-badge{position:absolute; top:-12px; right:24px; background:var(--green-bright); color:#04140b; font-family:var(--mono); font-size:11px; padding:5px 12px; border-radius:100px; font-weight:700;}
+.fmt-card h3{font-size:20px; margin:6px 0 16px;}
+.fmt-card ul{list-style:none; display:flex; flex-direction:column; gap:10px; font-size:13.5px; color:var(--muted);}
+.fmt-card ul li{display:flex; gap:8px;}
+.included-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:24px;}
+.included-card{padding:22px; border-radius:16px; display:flex; gap:14px; align-items:flex-start;}
+.included-card .icn{width:42px; height:42px; border-radius:11px; background:var(--green-900); color:#7dffb0; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.included-card h4{font-size:15px; margin-bottom:4px;}
+.included-card p{font-size:13px; color:var(--muted);}
+.struct-row{display:grid; grid-template-columns:repeat(3,1fr); gap:20px 14px; margin-top:24px; padding-top:0;}
+.struct-row .s-label{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted-2); font-family:var(--mono);}
+.struct-row .s-val{font-size:15px; font-weight:600; margin-top:6px;}
+
+/* ============ TIER COMPARISON (Why Advanced Excel) ============ */
+.tier-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.tier-card{padding:30px 26px; border-radius:20px;}
+.tier-card.basic{border-color:rgba(194,63,54,0.3); background:rgba(194,63,54,0.04);}
+.tier-card.pro{border-color:var(--border-hi);}
+.tier-card.industry{border-color:var(--green-700); background:rgba(30,138,76,0.06);}
+.tier-card .tier-icon{font-size:22px; margin-bottom:10px;}
+.tier-card h4{font-size:17px; margin-bottom:16px;}
+.tier-card ul{list-style:none; display:flex; flex-direction:column; gap:10px; font-size:13.5px; color:var(--muted);}
+.tier-card ul li{display:flex; gap:8px; align-items:flex-start;}
+
+/* ============ OFFER / DISCOUNT ============ */
+.offer-box{border:1px solid var(--green-700); border-radius:24px; background:linear-gradient(150deg, rgba(30,138,76,0.09), rgba(156,111,33,0.04)); padding:52px; text-align:center;}
+.offer-code{display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:22px; font-weight:700; letter-spacing:.06em; color:var(--green-glow); border:1.5px dashed var(--green-700); padding:12px 28px; border-radius:100px; margin:18px 0;}
+
+/* ============ CAREER PREP ============ */
+.round-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+.round-card{padding:24px; border-radius:16px; text-align:center;}
+.round-card .rnum{width:38px; height:38px; border-radius:50%; background:var(--green-900); color:#7dffb0; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; margin:0 auto 14px;}
+.round-card h4{font-size:15px; margin-bottom:6px;}
+.round-card p{font-size:13px; color:var(--muted);}
+
+/* ============ FINAL CTA ============ */
+#final-cta{text-align:center; padding:140px 0;}
+#final-cta h2{font-size:clamp(32px,5vw,56px); max-width:820px; margin:0 auto 20px;}
+#final-cta p{color:var(--muted); font-size:17px; max-width:560px; margin:0 auto 40px;}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--border); padding:56px 0 36px;}
+.foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px;}
+.foot-links{display:flex; gap:40px; flex-wrap:wrap;}
+.foot-col h5{font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted-2); margin-bottom:12px; font-family:var(--mono);}
+.foot-col a, .foot-col span{display:block; font-size:13.5px; color:var(--muted); margin-bottom:8px;}
+.foot-bottom{margin-top:44px; padding-top:24px; border-top:1px solid var(--border); font-size:12.5px; color:var(--muted-2); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+/* ============ TRAINER MODE FAB + PANEL ============ */
+#trainerFab{
+  position:fixed; bottom:26px; right:26px; z-index:300; background:var(--ink); border:1px solid var(--ink);
+  color:#f2f6f3; padding:13px 20px; border-radius:100px; display:flex; align-items:center; gap:10px; cursor:pointer;
+  font-weight:600; font-size:13.5px; box-shadow:0 14px 34px -10px rgba(14,26,18,.45); backdrop-filter:blur(10px);
+}
+#trainerFab:hover{background:var(--green-700); border-color:var(--green-700); transform:translateY(-2px);}
+#trainerPanel{
+  position:fixed; bottom:88px; right:26px; z-index:300; width:300px; max-height:70vh; overflow:auto;
+  background:rgba(10,15,12,0.96); border:1px solid var(--border-hi); border-radius:18px; backdrop-filter:blur(14px);
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.8); padding:18px; display:none; flex-direction:column; gap:4px;
+}
+#trainerPanel.open{display:flex;}
+#trainerPanel .tp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+#trainerPanel .tp-head h5{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--green-bright);}
+.tp-link{padding:10px 12px; border-radius:10px; font-size:13.5px; color:var(--muted); cursor:pointer; display:flex; align-items:center; justify-content:space-between;}
+.tp-link:hover{background:rgba(255,255,255,0.06); color:var(--ink);}
+.tp-link.active{background:var(--green-900); color:var(--green-glow);}
+.tp-nav{display:flex; gap:8px; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;}
+.tp-nav button{flex:1; padding:9px; border-radius:10px; border:1px solid var(--border-hi); background:transparent; color:var(--ink); font-size:12.5px; cursor:pointer;}
+.tp-nav button:hover{border-color:var(--green-bright); color:var(--green-bright);}
+.tp-progress{height:3px; background:var(--border); border-radius:3px; margin-top:12px; overflow:hidden;}
+.tp-progress i{display:block; height:100%; background:var(--green-bright); width:0%; transition:width .3s ease;}
+
+/* ============ PRESENTATION / DEMO MODE ============ */
+body.present-mode{overflow:hidden;}
+body.present-mode #nav, body.present-mode footer, body.present-mode #trainerFab, body.present-mode #trainerPanel{display:none !important;}
+body.present-mode .section{display:none !important; padding:0 !important; border:none !important;}
+body.present-mode .section.p-active{
+  display:flex !important; align-items:center; min-height:100vh; width:100%;
+  animation:presentIn .5s cubic-bezier(.16,.8,.24,1);
+}
+@keyframes presentIn{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:none;}}
+#presentBar{
+  position:fixed; top:0; left:0; right:0; z-index:400; display:none; align-items:center; justify-content:space-between;
+  padding:18px 30px; background:linear-gradient(180deg, rgba(8,11,9,0.95), transparent);
+}
+body.present-mode #presentBar{display:flex;}
+#presentBar .pb-title{font-family:var(--mono); font-size:12.5px; color:var(--muted); letter-spacing:.06em;}
+#presentBar .pb-controls{display:flex; align-items:center; gap:10px;}
+#presentBar button{width:38px; height:38px; border-radius:50%; border:1px solid var(--border-hi); background:rgba(255,255,255,0.03); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center;}
+#presentBar button:hover{border-color:var(--green-bright); color:var(--green-bright);}
+#presentProgress{position:fixed; bottom:0; left:0; right:0; height:4px; background:var(--border); z-index:400; display:none;}
+body.present-mode #presentProgress{display:block;}
+#presentProgress i{display:block; height:100%; background:linear-gradient(90deg,var(--green-bright),var(--gold)); width:0%; transition:width .4s ease;}
+#exitPresent{position:fixed; top:16px; right:26px; z-index:401; display:none;}
+body.present-mode #exitPresent{display:flex;}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;}
+  .who-grid{grid-template-columns:repeat(2,1fr);}
+  .dash-charts{grid-template-columns:1fr;}
+  .proj-grid{grid-template-columns:repeat(2,1fr);}
+  .fmt-grid{grid-template-columns:1fr;}
+  .tier-grid{grid-template-columns:1fr;}
+  .ba-grid{grid-template-columns:1fr;}
+  .check-grid{grid-template-columns:1fr;}
+  .struct-row{grid-template-columns:repeat(3,1fr); row-gap:20px;}
+  .included-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:720px){
+  #nav nav{display:none;}
+  .who-grid{grid-template-columns:1fr 1fr;}
+  .proj-grid{grid-template-columns:1fr;}
+  .acc-body-inner{grid-template-columns:1fr;}
+  .stat-row{gap:24px;}
+  .capstone{padding:30px;}
+  .struct-row{grid-template-columns:1fr 1fr;}
+  .included-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="nav">
+  <div class="wrap row">
+    <div class="brand"><span class="mark">Px</span> PragnyX <span style="color:var(--muted); font-weight:500; font-size:13px; margin-left:2px;">Learning</span><span class="pill" style="margin-left:10px; font-size:10.5px; padding:4px 10px;">Excel 360</span></div>
+    <nav>
+      <a href="#reality">Why Excel</a>
+      <a href="#who-uses">Who Uses It</a>
+      <a href="#roadmap">Learning Journey</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#projects">Projects</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#formats">Formats</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-primary" id="startDemoBtn">Start Demo</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="section" style="border-top:none;" data-trainer="Hero">
+  <div class="grid-bg"></div>
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow">PragnyX Learning · Excel 360</span>
+      <h1>Don't Just Learn Excel.<br>Become <span class="accent">Industry-Ready.</span></h1>
+      <p class="lead"><b style="color:var(--ink);">Excel 360 — Basic to Industry-Ready Professional Program.</b> A complete 1-month live learning journey from Excel fundamentals to professional MIS, reporting, data analysis, dashboards, Power Query, automation and real-world projects.</p>
+      <div class="hero-ctas">
+        <a href="#roadmap" class="btn btn-primary"><span>Explore the Learning Journey</span></a>
+        <a href="#curriculum" class="btn btn-ghost"><span>View Complete Curriculum</span></a>
+      </div>
+      <div class="hero-tags" style="margin:28px 0 0;">
+        <span class="pill">✅ Practical Learning</span>
+        <span class="pill">✅ Real-World Projects</span>
+        <span class="pill">✅ Personalized Training</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">22–26</div><div class="label">Live Sessions</div></div>
+        <div class="stat"><div class="num">~75 Min</div><div class="label">Per Session</div></div>
+        <div class="stat"><div class="num">1 Month</div><div class="label">Duration</div></div>
+        <div class="stat"><div class="num">Live</div><div class="label">Online Mode</div></div>
+      </div>
+    </div>
+
+    <div class="reveal-scale in" style="position:relative;">
+      <div class="excel-visual dark-surface">
+        <div class="excel-titlebar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="fname">Sales_MIS_Report.xlsx</div>
+          <div style="width:40px;"></div>
+        </div>
+        <div class="formula-bar"><span class="fx">fx</span><span id="formulaText" class="formula-typing"></span></div>
+        <div class="sheet" id="heroSheet"></div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="l">Revenue</div><div class="v" data-count="48.6" data-suffix="L">₹0L</div></div>
+          <div class="kpi"><div class="l">Growth</div><div class="v gold" data-count="18" data-suffix="%">0%</div></div>
+          <div class="kpi"><div class="l">Target</div><div class="v" data-count="94" data-suffix="%">0%</div></div>
+        </div>
+        <div class="mini-chart" id="heroChart"></div>
+      </div>
+      <div class="float-chip dark-surface" style="top:-18px; left:-24px; animation-delay:.4s;">=XLOOKUP(ID,A:A,D:D)</div>
+      <div class="float-chip dark-surface" style="bottom:10px; right:-26px; animation-delay:1.2s;">Pivot refreshed ✓</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 — EXCEL REALITY ============ -->
+<section id="reality" class="section" data-trainer="What is Excel?">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Excel Reality</span>
+      <h2>Excel Isn't Just a Spreadsheet.</h2>
+      <p>Companies don't hire people just because they know Excel. They hire people who can use Excel to solve business problems — that's the gap this course closes.</p>
+    </div>
+
+    <div class="pipe reveal" id="pipeline">
+      <div class="pipe-step"><div class="icon" data-lucide="database"></div><div class="t">Raw Data</div></div>
+      <div class="pipe-arrow" data-lucide="arrow-right"></div>
+      <div class="pipe-step"><div class="icon" data-lucide="sparkles"></div><div class="t">Clean Data</div></div>
+      <div class="pipe-arrow" data-lucide="arrow-right"></div>
+      <div class="pipe-step"><div class="icon" data-lucide="table-2"></div><div class="t">Analysis</div></div>
+      <div class="pipe-arrow" data-lucide="arrow-right"></div>
+      <div class="pipe-step"><div class="icon" data-lucide="file-bar-chart"></div><div class="t">Report</div></div>
+      <div class="pipe-arrow" data-lucide="arrow-right"></div>
+      <div class="pipe-step"><div class="icon" data-lucide="layout-dashboard"></div><div class="t">Dashboard</div></div>
+      <div class="pipe-arrow" data-lucide="arrow-right"></div>
+      <div class="pipe-step"><div class="icon" data-lucide="target"></div><div class="t">Business Decision</div></div>
+    </div>
+
+    <div class="quote-block reveal">
+      "Companies don't hire people just because they know Excel. They hire people who can use Excel to solve business problems."
+      <span>— what every hiring manager is actually screening for</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 — WHO USES EXCEL ============ -->
+<section id="who-uses" class="section" data-trainer="Who Uses Excel?">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Every Function, One Tool</span>
+      <h2>Excel Is Used Across Almost Every Business Function</h2>
+      <p>From reporting to recruitment to revenue — Excel is the operating layer beneath almost every department.</p>
+    </div>
+    <div class="who-grid stagger" id="whoGrid"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — WHY ADVANCED EXCEL ============ -->
+<section id="why-advanced" class="section" data-trainer="Why Advanced Excel?">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why This Program</span>
+      <h2>Excel Seekhna Enough Nahi Hai. Excel Use Karna Aana Chahiye.</h2>
+      <p>Basic formulas se lekar industry-ready workflows tak — teeno level ka fark saaf dikhta hai.</p>
+    </div>
+    <div class="tier-grid stagger" id="tierGrid"></div>
+    <div class="flowline reveal" id="tierFlow" style="margin-top:36px; justify-content:center;"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — WHAT WE OFFER ============ -->
+<section id="what-we-offer" class="section" data-trainer="What We Offer">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What You Get With PragnyX</span>
+      <h2>What We Offer</h2>
+    </div>
+    <div class="who-grid stagger" id="offerGrid" style="grid-template-columns:repeat(4,1fr);"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — LEARNING APPROACH ============ -->
+<section id="learning-approach" class="section" data-trainer="Learning Approach">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How We Teach</span>
+      <h2>Our Learning Approach</h2>
+    </div>
+    <div class="flowline reveal" id="approachFlow"></div>
+    <div class="quote-block reveal">
+      We don't focus on memorizing Excel formulas. We focus on using Excel to solve real business problems.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 4 — ROADMAP ============ -->
+<section id="roadmap" class="section" data-trainer="Course Roadmap">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Your Learning Journey</span>
+      <h2>From Basic to Industry-Ready</h2>
+      <p>Fourteen levels, one continuous path — each one builds directly on the last.</p>
+    </div>
+    <div class="roadmap reveal">
+      <div class="roadmap-line"></div>
+      <div id="roadmapList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 — CURRICULUM ============ -->
+<section id="curriculum" class="section" data-trainer="Curriculum">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Complete Curriculum</span>
+      <h2>15 Phases. Zero Fluff.</h2>
+      <p>Click a module to expand it. Every function and technique the course covers, organized the way it's actually taught.</p>
+    </div>
+    <div id="accordion"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — DASHBOARD ============ -->
+<section id="dashboard" class="section" data-trainer="Dashboard">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Phase 05 · Interactive Excel Dashboard</span>
+      <h2>Turn Numbers Into a Story.</h2>
+      <p>Students build full interactive dashboards — the same layouts used for Sales, HR, Finance, Operations and Marketing reporting.</p>
+    </div>
+    <div class="dash-mock dark-surface reveal-scale">
+      <div class="dash-top">
+        <div style="font-family:var(--mono); font-size:12.5px; color:var(--muted);">Sales Performance Dashboard — FY 25-26</div>
+        <div style="display:flex; gap:8px;"><span class="pill">⛃ Region ▾</span><span class="pill">⛃ Quarter ▾</span></div>
+      </div>
+      <div class="dash-kpis" id="dashKpis"></div>
+      <div class="dash-charts">
+        <div class="chart-box">
+          <h5>Monthly Revenue Trend</h5>
+          <div class="bars" id="dashBars"></div>
+        </div>
+        <div class="chart-box" style="display:flex; flex-direction:column; align-items:center;">
+          <h5 style="align-self:flex-start;">Region Split</h5>
+          <div class="donut"></div>
+          <ul class="dash-list" style="width:100%; margin-top:6px;">
+            <li><span>North</span><b style="color:var(--green-glow);">62%</b></li>
+            <li><span>West</span><b style="color:var(--gold);">22%</b></li>
+            <li><span>South &amp; East</span><b>16%</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="dashtype-row reveal" id="dashTypes"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — POWER QUERY ============ -->
+<section id="powerquery" class="section" data-trainer="Power Query">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Phase 03 · Data Preparation & Power Query</span>
+      <h2>Stop Repeating the Same Work Every Month.</h2>
+      <p>Build a query once. Refresh it forever. This is where Excel stops being manual.</p>
+    </div>
+    <div class="flowline reveal" id="pqFlow"></div>
+    <div class="who-grid stagger" id="pqTopics" style="grid-template-columns:repeat(4,1fr);"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — MIS ============ -->
+<section id="mis" class="section" data-trainer="MIS">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Phase 11 · MIS Reporting</span>
+      <h2>Learn How MIS Actually Works in Companies</h2>
+      <p>From raw rows to a management-ready report — the exact workflow used inside real MIS teams.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;">
+      <div class="flow-vert reveal" id="misFlow"></div>
+      <div class="who-grid stagger" id="misTypes" style="grid-template-columns:repeat(2,1fr);"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION — AUTOMATION ============ -->
+<section id="automation" class="section" data-trainer="Automation">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Phase 07 · From Manual to Automated Excel</span>
+      <h2>From Manual Excel to Automated Excel</h2>
+      <p>Macros and practical VBA — enough to automate the reports you'd otherwise build by hand every week.</p>
+    </div>
+    <div class="who-grid stagger" id="autoGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    <div class="section-head reveal" style="margin:44px 0 0;">
+      <span class="eyebrow" style="justify-content:flex-start;">Automation Project</span>
+      <h2 style="font-size:22px;">One-Click MIS Report Generator</h2>
+    </div>
+    <div class="flowline reveal" id="autoFlow"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — AI ============ -->
+<section id="ai" class="section" data-trainer="Excel + AI">
+  <div class="wrap" style="text-align:center;">
+    <div class="section-head reveal" style="margin:0 auto 40px; text-align:center;">
+      <span class="eyebrow">Phase 08 · Modern Excel Professional</span>
+      <h2>The Modern Excel Professional Uses AI</h2>
+      <p style="margin:0 auto;">Formula generation, error debugging, VBA assistance and report insights — used as a force multiplier, not a shortcut around understanding.</p>
+    </div>
+    <div class="reveal-scale" style="display:inline-flex; align-items:center; gap:18px; flex-wrap:wrap; justify-content:center; font-family:var(--mono); font-size:15px;">
+      <span class="pill">Human</span><span style="color:var(--muted-2);">+</span><span class="pill">Excel</span><span style="color:var(--muted-2);">+</span><span class="pill">AI</span>
+      <span style="color:var(--muted-2);">=</span>
+      <span class="pill" style="border-color:var(--green-700); color:var(--green-glow);">Higher Productivity</span>
+    </div>
+    <div class="quote-block reveal" style="margin:36px auto 0; text-align:left;">
+      Don't ask AI to replace your Excel knowledge. Use AI to multiply your productivity.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION — INDUSTRY WORKFLOW ============ -->
+<section id="industry-workflow" class="section" data-trainer="Industry Workflow">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Phase 12 · Industry Workflow</span>
+      <h2>How It Actually Works in the Workplace</h2>
+      <p>This is where "Basic to Industry-Ready" becomes believable — the exact 10-step process used on the job.</p>
+    </div>
+    <div class="roadmap reveal">
+      <div class="roadmap-line"></div>
+      <div id="workflowList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION — PROJECTS ============ -->
+<section id="projects" class="section" data-trainer="Projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Real-World Projects</span>
+      <h2>Six Projects. Six Industries.</h2>
+      <p>Every project mirrors a real workplace deliverable, start to finish.</p>
+    </div>
+    <div class="proj-grid stagger" id="projGrid"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — CAPSTONE ============ -->
+<section id="capstone" class="section" data-trainer="Capstone">
+  <div class="wrap">
+    <div class="capstone reveal-scale">
+      <span class="eyebrow">Final Capstone Project</span>
+      <h2 style="font-size:clamp(26px,3.6vw,38px);">Your Final Industry Simulation</h2>
+      <p style="color:var(--muted); max-width:640px; margin-top:14px; font-size:15.5px;">Students receive a messy business dataset — 50,000+ records, duplicates, missing values, incorrect formats, spread across multiple files and months — and independently take it from raw import to business insight.</p>
+      <div class="cap-badges">
+        <span class="pill">50,000+ records</span>
+        <span class="pill">Duplicate records</span>
+        <span class="pill">Missing values</span>
+        <span class="pill">Incorrect formats</span>
+        <span class="pill">Multiple files &amp; months</span>
+      </div>
+      <div class="flowline" id="capFlow" style="margin-top:30px;"></div>
+      <div style="margin-top:28px; padding-top:24px; border-top:1px solid var(--border);">
+        <div style="font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Choose Your Capstone Track</div>
+        <div class="cap-badges">
+          <span class="pill">🏦 Banking</span>
+          <span class="pill">🧑‍💼 HR</span>
+          <span class="pill">🛒 Retail</span>
+          <span class="pill">🚀 Startup Ops</span>
+        </div>
+        <p style="color:var(--muted); font-size:13.5px; margin-top:10px; max-width:560px;">The final dataset and business scenario are shaped around the industry you're targeting — so your capstone doubles as a portfolio piece for that field.</p>
+      </div>
+      <div style="margin-top:24px; padding-top:24px; border-top:1px solid var(--border); display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <span data-lucide="badge-check" style="color:var(--green-bright); width:20px; height:20px; flex-shrink:0;"></span>
+        <p style="color:var(--muted); font-size:13.5px;">On meeting completion criteria, you're awarded the <b style="color:var(--ink);">Excel 360 — Basic to Industry-Ready Certificate</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION — WHO IS THIS FOR ============ -->
+<section id="who-is-this-for" class="section" data-trainer="Who Is This For?">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Is This Course For You?</span>
+      <h2>Who Is This For?</h2>
+    </div>
+    <div class="who-grid stagger" id="audienceGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — CAREER PREPARATION ============ -->
+<section id="career-prep" class="section" data-trainer="Career Preparation">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Phase 14 · Excel Career Readiness</span>
+      <h2>Interview Preparation & 3+ Mock Interviews</h2>
+      <p>Resume positioning, the questions companies actually ask, and three structured mock interview rounds with feedback.</p>
+    </div>
+    <div class="round-grid stagger" id="roundGrid"></div>
+    <div class="chip-row reveal" id="interviewTopics" style="margin-top:28px; justify-content:center; display:flex; flex-wrap:wrap; gap:8px;"></div>
+    <div class="quote-block reveal" style="margin-top:32px;">
+      Practical Assessment: "Create an MIS report and present your findings."
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION — WHY PRAGNYX ============ -->
+<section id="why-pragnyx" class="section" data-trainer="Why PragnyX">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why PragnyX</span>
+      <h2>What You Won't Find in a Typical Excel Course</h2>
+      <p>Beyond the curriculum — the parts that actually make the difference once the course ends.</p>
+    </div>
+    <div class="who-grid stagger" id="diffGrid" style="grid-template-columns:repeat(4,1fr);"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — OUTCOMES ============ -->
+<section id="outcomes" class="section" data-trainer="Industry Outcome">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Industry-Ready Outcome</span>
+      <h2>By the End of the Course, You Will Be Able To:</h2>
+    </div>
+    <div class="check-grid stagger" id="checklist"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION — BEFORE / AFTER ============ -->
+<section id="before-after" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Transformation</span>
+      <h2>Before vs After</h2>
+    </div>
+    <div class="ba-grid reveal">
+      <div class="ba-col before">
+        <h3>Before</h3>
+        <ul id="beforeList"></ul>
+      </div>
+      <div class="ba-col after">
+        <h3>After</h3>
+        <ul id="afterList"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION — FORMATS ============ -->
+<section id="formats" class="section" data-trainer="Learning Formats">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Learning Format</span>
+      <h2>Choose Your Learning Experience</h2>
+      <p>At PragnyX, we intentionally focus on smaller learning formats so trainers can provide more interaction, practical guidance and personalized attention — every format follows the same curriculum, delivered live online.</p>
+    </div>
+    <div class="flowline reveal" id="fmtFlow" style="margin-bottom:8px;"></div>
+    <div class="fmt-grid stagger" id="fmtGrid"></div>
+
+    <div class="section-head reveal" style="margin:56px 0 0;">
+      <span class="eyebrow">Included With Every Format</span>
+      <h2 style="font-size:26px;">You're Never Learning Alone</h2>
+    </div>
+    <div class="included-grid stagger" id="includedGrid"></div>
+
+    <div class="section-head reveal" style="margin:56px 0 0;">
+      <span class="eyebrow">Program at a Glance</span>
+      <h2 style="font-size:26px;">Program Details</h2>
+    </div>
+    <div class="struct-row reveal">
+      <div><div class="s-label">Duration</div><div class="s-val">1 Month</div></div>
+      <div><div class="s-label">Live Sessions</div><div class="s-val">22–26</div></div>
+      <div><div class="s-label">Session Duration</div><div class="s-val">~75 Minutes</div></div>
+      <div><div class="s-label">Mode</div><div class="s-val">Live Online</div></div>
+      <div><div class="s-label">Learning Style</div><div class="s-val">Practical + Project Based</div></div>
+      <div><div class="s-label">Formats</div><div class="s-val">1:1 / 1:5 / 1:10</div></div>
+      <div><div class="s-label">Recording Access</div><div class="s-val">2 Months</div></div>
+      <div><div class="s-label">Mock Interviews</div><div class="s-val">3+</div></div>
+      <div><div class="s-label">Projects</div><div class="s-val">Multiple Real-World Projects</div></div>
+      <div><div class="s-label">Capstone</div><div class="s-val">Industry Simulation</div></div>
+      <div><div class="s-label">Certificate</div><div class="s-val">Excel 360 Completion Certificate*</div></div>
+    </div>
+    <p style="color:var(--muted-2); font-size:12px; margin-top:14px;">*Certificate is issued on successful completion of the program requirements.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION — 35% OFFER ============ -->
+<section id="offer" class="section" data-trainer="35% Offer">
+  <div class="wrap">
+    <div class="offer-box reveal-scale">
+      <span class="eyebrow" style="justify-content:center;">🎁 Special Demo Offer</span>
+      <h2 style="font-size:clamp(26px,3.6vw,38px);">Get 35% OFF</h2>
+      <div class="offer-code">🏷️ ABHI25</div>
+      <p style="color:var(--muted); font-size:13.5px; max-width:420px; margin:0 auto;">Available for learners enrolling through this demo offer.</p>
+      <div class="hero-ctas" style="justify-content:center; margin-top:26px;">
+        <a href="mailto:hello@pragnyx.learning?subject=Interested%20-%20Basic%20to%20Industry-Ready%20Excel%20(ABHI25)" class="btn btn-primary"><span>I'm Interested</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION — HOW TO ENROLL ============ -->
+<section id="how-to-enroll" class="section" data-trainer="How to Enroll">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Interested? Here's What Happens Next</span>
+      <h2>How to Enroll</h2>
+    </div>
+    <div class="roadmap reveal">
+      <div class="roadmap-line"></div>
+      <div id="enrollList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="final-cta" class="section">
+  <div class="wrap reveal-scale">
+    <span class="eyebrow" style="justify-content:center;">PragnyX Learning</span>
+    <h2>Ready to Move Beyond Basic Excel?</h2>
+    <p>Learn. Practice. Build. Analyze. — Basic to Industry-Ready Excel · 1 Month · 22–26 Live Sessions · Live Online</p>
+    <div class="hero-ctas" style="justify-content:center;">
+      <button class="btn btn-primary" id="startDemoBtn2"><span>Explore Program</span></button>
+      <a href="mailto:hello@pragnyx.learning?subject=Interested%20-%20Basic%20to%20Industry-Ready%20Excel" class="btn btn-ghost"><span>I'm Interested</span></a>
+    </div>
+    <div class="hero-tags" style="justify-content:center; margin-top:26px;">
+      <span class="pill">1:1</span><span class="pill">1:5</span><span class="pill">1:10</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand"><span class="mark">Px</span> PragnyX Learning</div>
+        <p style="color:var(--muted); font-size:13.5px; margin-top:10px; max-width:260px;">The future is not predicted. It is engineered.</p>
+        <p style="color:var(--muted-2); font-size:12px; margin-top:10px; max-width:260px;">Excel 360 — Basic to Industry-Ready Professional Program</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col"><h5>Program</h5><a href="#curriculum">Excel 360: Basic to Industry-Ready</a></div>
+        <div class="foot-col"><h5>Learning Journey</h5><a href="#roadmap">Roadmap</a></div>
+        <div class="foot-col"><h5>Projects</h5><a href="#projects">Real-World Projects</a></div>
+        <div class="foot-col"><h5>Contact</h5><span>hello@pragnyx.learning</span></div>
+        <div class="foot-col"><h5>Website</h5><span>www.pragnyx.learning</span></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PragnyX Learning. All rights reserved.</span>
+      <span>Designed to build practical, industry-relevant Excel skills.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TRAINER MODE ============ -->
+<button id="trainerFab">🎤 <span>Trainer Mode</span></button>
+<div id="trainerPanel" class="dark-surface">
+  <div class="tp-head"><h5>Trainer Navigation</h5><span data-lucide="x" id="tpClose" style="cursor:pointer; width:16px; height:16px; color:var(--muted);"></span></div>
+  <div id="tpLinks"></div>
+  <div class="tp-progress"><i id="tpProgressBar"></i></div>
+  <div class="tp-nav"><button id="tpPrev">◂ Previous</button><button id="tpNext">Next ▸</button></div>
+</div>
+
+<!-- ============ PRESENTATION MODE BAR ============ -->
+<div id="presentBar" class="dark-surface">
+  <div class="pb-title" id="pbTitle">SECTION 1 / 16 · HERO</div>
+  <div class="pb-controls">
+    <button id="presPrev" title="Previous (←)" data-lucide="chevron-left"></button>
+    <button id="presNext" title="Next (→)" data-lucide="chevron-right"></button>
+    <button id="presExit" title="Exit (Esc)" data-lucide="x"></button>
+  </div>
+</div>
+<div id="presentProgress"><i></i></div>
+
+<script>
+lucide.createIcons();
+
+/* =========================================================
+   STRUCTURED CONTENT CONFIG — edit here to update the site
+   ========================================================= */
+const WHO_USES = [
+  {r:"MIS Executive", d:"Reporting, dashboards, KPIs", i:"file-bar-chart"},
+  {r:"Data Analyst", d:"Data cleaning, analysis, visualization", i:"chart-scatter"},
+  {r:"Business Analyst", d:"Business reporting and decision support", i:"briefcase"},
+  {r:"Finance & Accounts", d:"Budgeting, reconciliation, financial analysis", i:"landmark"},
+  {r:"HR", d:"Employee data, attendance, recruitment analytics", i:"users"},
+  {r:"Sales", d:"Targets, sales tracking, performance analysis", i:"trending-up"},
+  {r:"Marketing", d:"Campaign analysis, leads, ROI", i:"megaphone"},
+  {r:"Operations", d:"Productivity, SLA, inventory", i:"settings-2"},
+  {r:"Project Management", d:"Planning, tracking and reporting", i:"clipboard-list"},
+  {r:"Supply Chain", d:"Inventory, orders, logistics", i:"truck"},
+  {r:"Banking & Insurance", d:"Reporting and financial analysis", i:"shield-check"},
+  {r:"Startups & SMEs", d:"Founders running ops entirely on Excel", i:"rocket"},
+];
+
+const ROADMAP = [
+  "Excel Fundamentals for Professionals","Formula & Function Mastery","Data Prep & Power Query","Professional Data Analysis (Pivot)",
+  "Interactive Dashboard Development","Business Analytics","Automation (Macros & VBA)","Modern Excel Professional (AI)",
+  "Excel + Python (Bonus)","Real-World Projects","MIS Reporting","Industry Workflow",
+  "Professional Excel Standards","Excel Career Readiness","Final Assessment & Certification"
+];
+
+const CURRICULUM = [
+  {mod:"01", title:"Excel Fundamentals for Professionals", sub:"Excel ko professional working tool ke tarah use karna", groups:[
+    {label:"Foundations", items:["Excel interface & workbook structure","Worksheets, rows, columns & ranges","Efficient data entry","Data types","Cell references","Relative, absolute & mixed references"]},
+    {label:"Productivity Techniques", items:["Advanced selection techniques","Keyboard shortcuts","Freeze panes","Find & Replace","Go To Special","Advanced copy/paste","Paste Special","Flash Fill","AutoFill"]},
+    {label:"Professional Formatting", items:["Number formats","Custom number formats","Date/time formatting","Text formatting","Conditional formatting","Formula-based conditional formatting","Cell styles","Tables"]},
+    {label:"Structure & Protection", items:["Professional worksheet design","Protection & permissions","Workbook/file settings"]},
+  ]},
+  {mod:"02", title:"Formula & Function Mastery", sub:"Business problems ko formulas se solve karna", groups:[
+    {label:"Logical Functions", items:["IF","IFS","AND","OR","XOR","IFERROR","IFNA","SWITCH"]},
+    {label:"Mathematical & Aggregation", items:["SUM","SUMIF","SUMIFS","COUNT","COUNTA","COUNTIF","COUNTIFS","AVERAGE","AVERAGEIF","AVERAGEIFS","MAX","MIN","MAXIFS","MINIFS","ROUND","ROUNDUP","ROUNDDOWN","SUMPRODUCT"]},
+    {label:"Lookup & Reference", items:["VLOOKUP","HLOOKUP","XLOOKUP","LOOKUP","INDEX","MATCH","XMATCH","OFFSET","CHOOSE","ADDRESS","INDIRECT","GETPIVOTDATA"]},
+    {label:"Dynamic Array Functions", items:["FILTER","SORT","SORTBY","UNIQUE","SEQUENCE","TAKE","DROP","EXPAND","CHOOSECOLS","CHOOSEROWS","HSTACK","VSTACK","WRAPROWS","WRAPCOLS"]},
+    {label:"Modern Excel Functions", items:["LET","LAMBDA","MAP","REDUCE","SCAN","BYROW","BYCOL","MAKEARRAY"]},
+    {label:"Text Functions", items:["LEFT","RIGHT","MID","LEN","FIND","SEARCH","SUBSTITUTE","REPLACE","TRIM","CLEAN","PROPER","UPPER","LOWER","CONCAT","TEXTJOIN","TEXTSPLIT","TEXTBEFORE","TEXTAFTER","VALUE","TEXT","EXACT","REGEXEXTRACT","REGEXREPLACE","REGEXTEST"]},
+    {label:"Date & Time", items:["TODAY","NOW","DATE","DAY","MONTH","YEAR","DATEDIF","DAYS","EDATE","EOMONTH","NETWORKDAYS","WORKDAY","WEEKDAY","WEEKNUM","YEARFRAC"]},
+    {label:"Statistical & Analytical", items:["MEDIAN","MODE","STDEV","VAR","RANK","LARGE","SMALL","FORECAST","GROWTH","CORREL","PERCENTILE","QUARTILE"]},
+    {label:"Financial", items:["PMT","FV","PV","RATE","NPV","IRR","Financial analysis functions"]},
+    {label:"Formula Engineering", items:["Nested formulas","Dynamic formulas","Error handling","Formula auditing","Evaluate Formula","Formula debugging","Building reusable formulas","Performance optimization"]},
+  ]},
+  {mod:"03", title:"Data Preparation & Power Query", sub:"Raw files → clean dataset → refreshable report", groups:[
+    {label:"Data Cleaning", items:["Understanding messy data","Duplicate removal","Missing values","Incorrect data types","Text cleanup","Date standardization","Data validation","Error identification","Data consistency"]},
+    {label:"Power Query — Get Data & Editor", items:["Get Data (Excel, CSV, Folder)","Multiple-file consolidation","Power Query Editor","Data types","Remove rows/columns","Filter","Sort","Split columns"]},
+    {label:"Power Query — Combine & Transform", items:["Merge columns","Replace values","Remove duplicates","Fill operations","Group By","Merge Queries","Append Queries","Custom & Conditional Columns","Parameters","Refresh","Queries & Connections"]},
+    {label:"Practical Project", items:["Monthly Sales Data Automation — multiple raw files → Power Query → clean dataset → final report"]},
+  ]},
+  {mod:"04", title:"Professional Data Analysis", sub:"Raw sales data → summary report", groups:[
+    {label:"PivotTables", items:["Creating PivotTables","Rows/Columns/Values","Filters","Grouping","Date grouping","Calculated fields","% of total","Running total","Ranking","Multiple data sources","Dynamic ranges","Refreshing PivotTables","GETPIVOTDATA"]},
+    {label:"PivotCharts", items:["Column","Bar","Line","Pie/Doughnut","Combo","Custom PivotCharts"]},
+    {label:"Slicers & Timeline", items:["Slicers","Multi-select","Timeline","Connecting slicers to multiple PivotTables"]},
+    {label:"Business Analysis", items:["Sales analysis","Product analysis","Customer analysis","Region analysis","Employee analysis","Monthly trend analysis","Target vs Actual","Growth analysis"]},
+  ]},
+  {mod:"05", title:"Interactive Excel Dashboard", sub:"KPI design, layout & data storytelling", groups:[
+    {label:"Dashboard Fundamentals", items:["What makes a good dashboard?","KPI design","Dashboard layout","Data storytelling","Choosing the right chart","Avoiding misleading charts"]},
+    {label:"Chart Types", items:["Column","Bar","Line","Area","Combo","Pie","Doughnut","Scatter","Bubble","Histogram","Funnel","Waterfall","Gantt","Treemap","Sunburst","Radar","Sparklines"]},
+    {label:"Interactive Elements", items:["Slicers","Timelines","Dynamic ranges","Dynamic charts","Named ranges","Form controls","Conditional formatting","KPI cards","Interactive filters"]},
+    {label:"Dashboard Projects", items:["Sales Dashboard","HR Dashboard","Finance Dashboard","Inventory Dashboard","Customer Support Dashboard","Marketing Dashboard"]},
+  ]},
+  {mod:"06", title:"Business Analytics with Excel", sub:"From raw numbers to business insight", groups:[
+    {label:"Descriptive Analytics", items:["Mean","Median","Mode","Standard deviation","Variance","Percentiles","Quartiles","Distribution"]},
+    {label:"Business Metrics", items:["Revenue","Profit","Margin","Growth","Conversion","Attrition","Productivity","Achievement %","Target vs Actual"]},
+    {label:"Analysis Techniques", items:["Trend analysis","Variance analysis","Contribution analysis","Pareto analysis","Top/Bottom analysis","Cohort-style analysis","What-if analysis"]},
+    {label:"What-If Analysis", items:["Goal Seek","Scenario Manager","Data Tables","Forecast Sheet"]},
+    {label:"Dynamic Reporting", items:["Dynamic named ranges","Auto-expanding reports","Refreshable reports","Automated summaries"]},
+  ]},
+  {mod:"07", title:"From Manual Excel to Automated Excel", sub:"Automate the reports you'd otherwise build by hand", groups:[
+    {label:"Macros", items:["What are macros?","Macro recording","Macro security","Relative vs absolute recording","Running macros","Editing recorded macros"]},
+    {label:"VBA Basics", items:["VBA Editor","Modules","Variables","Data types","IF statements","Loops","Functions","Objects","Worksheets","Workbooks","Ranges","Cells"]},
+    {label:"Practical VBA", items:["Formatting automation","Data cleaning","Sheet creation","Report generation","PDF/export automation","File handling","Refresh automation","Basic email automation"]},
+    {label:"Automation Project", items:["One-click MIS Report Generator — raw data → clean → refresh → dashboard/report → export"]},
+  ]},
+  {mod:"08", title:"Modern Excel Professional", sub:"Use AI to multiply your productivity, not replace your Excel knowledge", groups:[
+    {label:"AI for Excel", items:["Formula generation","Formula explanation","Formula debugging","Data analysis","Data cleaning assistance","Dashboard ideas","Chart recommendations","Report insights","Excel documentation"]},
+    {label:"Copilot / AI Tools", items:["Prompting for Excel tasks","Generating formulas","Understanding datasets","Summarizing data","Creating insights","Improving VBA","Power Query assistance"]},
+  ]},
+  {mod:"09", title:"Excel + Python", sub:"Bonus track for advanced learners", bonus:true, groups:[
+    {label:"Python in Excel", items:["What Python in Excel is","When to use it","Basic Python execution","Data analysis with Python","Python + Excel workflow","Limitations","Practical demonstration"]},
+  ]},
+  {mod:"10", title:"Real-World Projects", sub:"Six industry projects plus a mid-course capstone", groups:[
+    {label:"Projects", items:["Project 1 — Sales MIS","Project 2 — HR Analytics","Project 3 — Finance Report","Project 4 — Inventory Analysis","Project 5 — Customer Support","Project 6 — Marketing Analytics"]},
+    {label:"Capstone Project", items:["Messy real-world dataset","Raw Data → Cleaning → Analysis → Dashboard → Insights → Presentation"]},
+  ]},
+  {mod:"11", title:"MIS Reporting", sub:"How MIS actually works in companies", groups:[
+    {label:"MIS Fundamentals", items:["What is MIS?","Daily MIS","Weekly MIS","Monthly MIS","Management reports","KPI reports"]},
+    {label:"Report Types", items:["Target vs Achievement","Productivity reports","Attendance reports","Sales reports"]},
+    {label:"Automated MIS", items:["Report formatting","Data refresh","Management-ready presentation"]},
+    {label:"Practical", items:["Build a Daily → Weekly → Monthly MIS reporting system"]},
+  ]},
+  {mod:"12", title:"Industry Workflow", sub:"The actual workplace process, step by step", groups:[
+    {label:"The 10-Step Process", items:["1. Receive raw data","2. Understand business requirement","3. Clean data","4. Transform data","5. Analyse","6. Build report","7. Create dashboard","8. Automate repetitive tasks","9. Generate insights","10. Present to management"]},
+  ]},
+  {mod:"13", title:"Professional Excel Standards", sub:"What separates hobbyist Excel from professional Excel", groups:[
+    {label:"File & Formula Practices", items:["File organization","Naming conventions","Formula best practices","Avoiding hardcoded values"]},
+    {label:"Quality & Protection", items:["Error prevention","Data validation","Workbook protection","Version control basics","Documentation"]},
+    {label:"Performance", items:["Dashboard usability","Performance optimization","Large dataset handling","Common Excel mistakes","Professional report formatting"]},
+  ]},
+  {mod:"14", title:"Excel Career Readiness", sub:"Resume, interview prep and 3+ mock interviews", groups:[
+    {label:"Resume", items:["Excel skills section","Project descriptions","ATS-friendly wording"]},
+    {label:"Interview Prep Topics", items:["Excel basics","Advanced formulas","XLOOKUP vs VLOOKUP","INDEX MATCH","PivotTables","Power Query","Dashboard","MIS","Data cleaning","VBA","Scenario-based questions"]},
+    {label:"Mock Interviews (3+)", items:["Technical Excel round","Practical/business scenario round","HR/communication round"]},
+    {label:"Practical Assessment", items:["\u201cCreate an MIS report and present your findings.\u201d"]},
+  ]},
+  {mod:"15", title:"Final Assessment & Certification", sub:"The final industry simulation and certification", groups:[
+    {label:"Final Capstone", items:["Understand requirement","Clean data","Transform data","Analyse data","Build formulas","Create PivotTables","Create dashboard","Generate insights","Present results"]},
+    {label:"Certification", items:["Excel 360 — Basic to Industry-Ready Certificate, on meeting completion criteria"]},
+  ]},
+];
+
+const PQ_TOPICS = [
+  {r:"Import", d:"Excel, CSV, folders & multiple files", i:"folder-input"},
+  {r:"Transform", d:"Data types, split, rename, fill down", i:"wand-2"},
+  {r:"Combine", d:"Merge & append queries", i:"merge"},
+  {r:"Reshape", d:"Group by, pivot, unpivot, custom columns", i:"layout-grid"},
+];
+
+const MIS_TYPES = [
+  {r:"Daily / Weekly / Monthly MIS", d:"Recurring management reporting cycles", i:"calendar-clock"},
+  {r:"Sales & Performance MIS", d:"Targets, achievement and rankings", i:"trending-up"},
+  {r:"Attendance & Employee MIS", d:"HR tracking and workforce reporting", i:"users"},
+  {r:"Inventory & Productivity MIS", d:"Stock, SLA and output tracking", i:"boxes"},
+];
+
+const AUTO_ITEMS = [
+  {r:"Macro Recording", d:"Relative vs absolute recording", i:"circle-dot"},
+  {r:"VBA Basics", d:"Variables, loops, IF, ranges & cells", i:"code-2"},
+  {r:"Report Automation", d:"Formatting, generation & export", i:"file-cog"},
+];
+
+const PROJECTS = [
+  {n:"01", t:"Sales MIS", f:"Raw sales data → cleaning → formulas → Pivot → dashboard → insights"},
+  {n:"02", t:"HR Analytics", f:"Employee data → attrition → department analysis → HR dashboard"},
+  {n:"03", t:"Finance Report", f:"Revenue → expenses → profit → monthly trend → finance dashboard"},
+  {n:"04", t:"Inventory Analysis", f:"Stock → reorder → movement → ageing → inventory dashboard"},
+  {n:"05", t:"Customer Support", f:"Tickets → SLA → resolution time → agent performance → dashboard"},
+  {n:"06", t:"Marketing Analytics", f:"Campaign → leads → conversion → ROI → marketing dashboard"},
+];
+
+const CHECKLIST = [
+  "Clean messy business data","Build advanced formulas","Perform lookup operations","Analyze large datasets",
+  "Create Pivot Tables","Build professional dashboards","Create MIS reports","Automate repetitive tasks",
+  "Use Power Query","Perform business analysis","Use Excel with AI","Present business insights",
+  "Handle real-world Excel assignments","Build a professional Excel portfolio"
+];
+
+const BEFORE = ["Only basic formulas","Manual reporting","Can't handle messy data","Doesn't understand Pivot Tables","Doesn't know Power Query","Can't build dashboards","No real-world project experience"];
+const AFTER = ["Advanced Excel","Data cleaning","MIS reporting","Pivot analysis","Power Query","Interactive dashboards","Business analysis","Automation","Real-world projects","Interview-ready portfolio"];
+
+const FORMATS = [
+  {t:"1:10 Group Batch", items:["Maximum 10 learners","Live trainer","Interactive sessions","Practical assignments"], hi:false, sub:"For learners who prefer structured group learning"},
+  {t:"1:5 Small Batch", items:["Maximum 5 learners","Higher trainer interaction","Practical learning","Personalized guidance"], hi:true, badge:"Most Popular", sub:"For learners who want more interaction"},
+  {t:"1:1 Personal Mentorship", items:["One learner","Dedicated trainer","Personalized pace","Direct interaction"], hi:false, sub:"For learners who want a completely personalized experience"},
+];
+
+const DASH_TYPES = ["Sales Dashboard","HR Dashboard","Finance Dashboard","Operations Dashboard","Marketing Dashboard"];
+
+const INCLUDED = [
+  {t:"2 Months Recording Access", d:"Every live session is recorded and stays accessible for 2 months, so you can revisit any topic anytime.", i:"video"},
+  {t:"Interview Preparation", d:"Guided prep covering the Excel and analyst questions companies actually ask.", i:"message-square-text"},
+  {t:"3+ Mock Interviews", d:"Technical Excel round, practical business-scenario round and an HR/communication round — with direct feedback.", i:"user-check"},
+  {t:"Doubt Support Channel", d:"A dedicated WhatsApp/Discord group for questions between sessions, with a defined response window.", i:"message-circle"},
+];
+
+const DIFFERENTIATORS = [
+  {r:"Industry-Specific Capstone Tracks", d:"Your final project is shaped around Banking, HR, Retail or Startup Ops — whichever field you're targeting.", i:"target"},
+  {r:"Dashboard & Template Starter Kit", d:"Take home a library of ready-to-use dashboards and templates to build your own portfolio.", i:"layout-template"},
+  {r:"Verified Digital Certificate", d:"A QR-verifiable certificate of completion recruiters can confirm is genuine.", i:"badge-check"},
+  {r:"Alumni & Peer Community", d:"Stay connected with past batches for networking, referrals and continued learning.", i:"users-round"},
+];
+
+const TIERS = [
+  {cls:"basic", icon:"❌", t:"Basic Excel Learning", items:["Formulas only","Copy-paste reporting","Basic charts","Limited practical exposure"]},
+  {cls:"pro", icon:"⚡", t:"Professional Excel", items:["Data Cleaning","Advanced Formulas","Lookups","Pivot Tables","MIS","Dashboards"]},
+  {cls:"industry", icon:"🚀", t:"Industry-Ready Excel", items:["Power Query","Automation","Business Analysis","Real-world Projects","AI-assisted productivity","Industry simulations"]},
+];
+
+const OFFER_ITEMS = [
+  {r:"Live Instructor-Led Training", d:"Real-time trainer interaction.", i:"graduation-cap"},
+  {r:"Small Batch Learning", d:"1:10 maximum group format.", i:"users"},
+  {r:"Personalized Learning", d:"1:1 option available.", i:"user-cog"},
+  {r:"Practical Assignments", d:"Concept ke saath practical implementation.", i:"clipboard-check"},
+  {r:"Industry-Oriented Curriculum", d:"Real workplace workflows ke according.", i:"building-2"},
+  {r:"Real-World Projects", d:"Sales, HR, Finance, Marketing, Operations etc.", i:"briefcase"},
+  {r:"Dashboard & MIS Training", d:"Professional reporting and visualization.", i:"layout-dashboard"},
+  {r:"Power Query & Automation", d:"Repetitive Excel work ko efficient banana.", i:"repeat"},
+];
+
+const AUDIENCE = [
+  {r:"Students", d:"Build practical Excel skills.", i:"graduation-cap"},
+  {r:"Freshers", d:"Prepare for Excel-heavy roles and practical assessments.", i:"user-plus"},
+  {r:"Working Professionals", d:"Improve reporting and productivity.", i:"briefcase"},
+  {r:"MIS Professionals", d:"Build advanced reporting & dashboards.", i:"file-bar-chart"},
+  {r:"Aspiring Data Analysts", d:"Build Excel-based analytical foundations.", i:"chart-scatter"},
+  {r:"Career Upskillers", d:"Move from basic Excel to professional workflows.", i:"trending-up"},
+];
+
+const ENROLL_STEPS = [
+  "Submit Your Interest","Our Counselling Team Connects With You","Understand Your Learning Goal",
+  "Recommend 1:1 / 1:5 / 1:10","Share Complete Program & Pricing","Choose Your Batch & Start Learning"
+];
+
+const MOCK_ROUNDS = [
+  {t:"Technical Excel Round", d:"Formulas, lookups, PivotTables and Power Query put to the test."},
+  {t:"Practical / Business Scenario", d:"A real dataset — build the report or dashboard it calls for."},
+  {t:"HR / Communication Round", d:"Presenting findings clearly, the way you would to management."},
+];
+
+const INTERVIEW_TOPICS = ["Excel basics","Advanced formulas","XLOOKUP vs VLOOKUP","INDEX MATCH","PivotTables","Power Query","Dashboard","MIS","Data cleaning","VBA","Scenario-based questions"];
+
+const WORKFLOW_STEPS = [
+  "Receive raw data","Understand business requirement","Clean data","Transform data","Analyse",
+  "Build report","Create dashboard","Automate repetitive tasks","Generate insights","Present to management"
+];
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+function el(tag, cls, html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+
+// Who uses grid (also reused for PQ / MIS / Automation)
+function renderIconCards(containerId, data){
+  const c = document.getElementById(containerId);
+  data.forEach((x,i)=>{
+    const card = el('div','card who-card reveal');
+    card.style.setProperty('--i', i);
+    card.innerHTML = `<div class="icn" data-lucide="${x.i}"></div><h4>${x.r}</h4><p>${x.d}</p>`;
+    c.appendChild(card);
+  });
+}
+renderIconCards('whoGrid', WHO_USES);
+renderIconCards('pqTopics', PQ_TOPICS);
+renderIconCards('misTypes', MIS_TYPES);
+renderIconCards('autoGrid', AUTO_ITEMS);
+renderIconCards('offerGrid', OFFER_ITEMS);
+renderIconCards('audienceGrid', AUDIENCE);
+
+// Tier comparison (Why Advanced Excel)
+const tierGrid = document.getElementById('tierGrid');
+TIERS.forEach((t,i)=>{
+  const card = el('div','card tier-card '+t.cls+' reveal');
+  card.style.setProperty('--i', i);
+  card.innerHTML = `<div class="tier-icon">${t.icon}</div><h4>${t.t}</h4><ul>${t.items.map(x=>`<li><span>${t.cls==='basic'?'✗':'✓'}</span>${x}</li>`).join('')}</ul>`;
+  tierGrid.appendChild(card);
+});
+buildFlow('tierFlow', ["Basic","Professional","Industry Ready"], false);
+
+// Learning approach flow
+buildFlow('approachFlow', ["Learn","Practice","Apply","Build","Become Industry-Ready"], false);
+
+// Enroll steps (reuse roadmap styling)
+const enrollList = document.getElementById('enrollList');
+ENROLL_STEPS.forEach((s,i)=>{
+  const item = el('div','rm-item reveal');
+  item.innerHTML = `<div class="rm-num">${String(i+1).padStart(2,'0')}</div><div class="rm-body"><div class="lv">STEP ${String(i+1).padStart(2,'0')}</div><h4>${s}</h4></div>`;
+  enrollList.appendChild(item);
+});
+
+// Industry workflow (10-step, reuse roadmap styling)
+const workflowList = document.getElementById('workflowList');
+WORKFLOW_STEPS.forEach((s,i)=>{
+  const item = el('div','rm-item reveal');
+  item.innerHTML = `<div class="rm-num">${String(i+1).padStart(2,'0')}</div><div class="rm-body"><div class="lv">STEP ${String(i+1).padStart(2,'0')}</div><h4>${s}</h4></div>`;
+  workflowList.appendChild(item);
+});
+
+// Career prep — mock interview rounds
+const roundGrid = document.getElementById('roundGrid');
+MOCK_ROUNDS.forEach((r,i)=>{
+  const card = el('div','card round-card reveal');
+  card.style.setProperty('--i', i);
+  card.innerHTML = `<div class="rnum">${i+1}</div><h4>${r.t}</h4><p>${r.d}</p>`;
+  roundGrid.appendChild(card);
+});
+const interviewTopics = document.getElementById('interviewTopics');
+INTERVIEW_TOPICS.forEach(t=> interviewTopics.appendChild(el('span','chip', t)));
+
+// Automation project flow
+buildFlow('autoFlow', ["Raw Data","Clean","Refresh","Dashboard / Report","Export"], false);
+
+// Roadmap
+const rmList = document.getElementById('roadmapList');
+ROADMAP.forEach((title,i)=>{
+  const item = el('div','rm-item reveal');
+  item.innerHTML = `<div class="rm-num">${String(i+1).padStart(2,'0')}</div><div class="rm-body"><div class="lv">LEVEL ${String(i+1).padStart(2,'0')}</div><h4>${title}</h4></div>`;
+  rmList.appendChild(item);
+});
+
+// Curriculum accordion
+const acc = document.getElementById('accordion');
+CURRICULUM.forEach((m,idx)=>{
+  const item = el('div','acc-item');
+  const groupsHtml = m.groups.map(g=>`
+    <div class="topic-group">
+      <h5>${g.label}</h5>
+      <div class="chip-row">${g.items.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+    </div>`).join('');
+  item.innerHTML = `
+    <div class="acc-head">
+      <div class="acc-left">
+        <span class="acc-mod">PHASE ${m.mod}</span>
+        <div class="acc-title"><h4>${m.title}${m.bonus?' <span class="pill" style="margin-left:6px; font-size:10px; padding:3px 9px; vertical-align:middle;">Bonus</span>':''}</h4><p>${m.sub}</p></div>
+      </div>
+      <div class="acc-chev" data-lucide="chevron-down"></div>
+    </div>
+    <div class="acc-body"><div class="acc-body-inner">${groupsHtml}</div></div>`;
+  const head = item.querySelector('.acc-head');
+  const body = item.querySelector('.acc-body');
+  head.addEventListener('click', ()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(o=>{ o.classList.remove('open'); o.querySelector('.acc-body').style.maxHeight=null; });
+    if(!isOpen){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight+'px'; }
+  });
+  acc.appendChild(item);
+});
+
+// Dashboard KPIs & bars
+const dashKpis = document.getElementById('dashKpis');
+[["Revenue","₹48.6L"],["Orders","3,214"],["Customers","1,082"],["Growth","+18%"]].forEach(([l,v])=>{
+  dashKpis.appendChild(el('div','kpi', `<div class="l">${l}</div><div class="v">${v}</div>`));
+});
+const dashBars = document.getElementById('dashBars');
+[40,55,48,70,62,80,74,90,84,96,88,100].forEach((h,i)=>{ const b=el('i'); b.style.height=h+'%'; b.style.animationDelay=(i*0.05)+'s'; dashBars.appendChild(b); });
+const dashTypeRow = document.getElementById('dashTypes');
+DASH_TYPES.forEach(t=> dashTypeRow.appendChild(el('span','pill', t)));
+
+// Flow builders
+function buildFlow(containerId, steps, vertical){
+  const c = document.getElementById(containerId);
+  c.classList.toggle('flow-vert', !!vertical);
+  steps.forEach((s,i)=>{
+    if(i>0) c.appendChild(el('div','flow-arrow', vertical? '↓' : '→'));
+    c.appendChild(el('div','flow-node'+(i===steps.length-1?' accent':''), s));
+  });
+}
+buildFlow('pqFlow', ["Monthly Files","Power Query","Transform","Refresh","Updated Report"], false);
+buildFlow('misFlow', ["Raw Data","Cleaning","Validation","Calculations","Pivot","Dashboard","Management Report","Business Insights"], true);
+buildFlow('capFlow', ["Raw Data","Cleaning","Analysis","Dashboard","Insights","Presentation"], false);
+
+// Projects
+const projGrid = document.getElementById('projGrid');
+PROJECTS.forEach((p,i)=>{
+  const card = el('div','card proj-card reveal');
+  card.style.setProperty('--i', i);
+  card.innerHTML = `<div class="pnum">PROJECT ${p.n}</div><h4>${p.t}</h4><div class="proj-flow">${p.f.split(' → ').join('<br>↓ ')}</div>`;
+  projGrid.appendChild(card);
+});
+
+// Checklist
+const checklist = document.getElementById('checklist');
+CHECKLIST.forEach((c,i)=>{
+  const item = el('div','card check-item reveal');
+  item.style.setProperty('--i', i);
+  item.innerHTML = `<div class="tick" data-lucide="check"></div><div>${c}</div>`;
+  checklist.appendChild(item);
+});
+
+// Before / After
+const beforeList = document.getElementById('beforeList');
+BEFORE.forEach(b=> beforeList.appendChild(el('li','', `<span>❌</span><span>${b}</span>`)));
+const afterList = document.getElementById('afterList');
+AFTER.forEach(a=> afterList.appendChild(el('li','', `<span style="color:var(--green-bright);">✓</span><span>${a}</span>`)));
+
+// Formats
+const fmtGrid = document.getElementById('fmtGrid');
+FORMATS.forEach(f=>{
+  const card = el('div','card fmt-card'+(f.hi?' highlight':'')+' reveal');
+  card.innerHTML = `${f.hi?'<div class="fmt-badge">'+f.badge+'</div>':''}<div class="glow-dot"></div><h3>${f.t}</h3><p style="font-size:12.5px; color:var(--muted-2); margin:-8px 0 14px;">${f.sub||''}</p><ul>${f.items.map(x=>`<li><span style="color:var(--green-bright);">›</span>${x}</li>`).join('')}</ul>`;
+  fmtGrid.appendChild(card);
+});
+buildFlow('fmtFlow', ["1:10","1:5","1:1"], false);
+
+// Included-with-every-format cards
+const includedGrid = document.getElementById('includedGrid');
+INCLUDED.forEach((x,i)=>{
+  const card = el('div','card included-card reveal');
+  card.style.setProperty('--i', i);
+  card.innerHTML = `<div class="icn" data-lucide="${x.i}"></div><div><h4>${x.t}</h4><p>${x.d}</p></div>`;
+  includedGrid.appendChild(card);
+});
+
+// Why PragnyX differentiators
+renderIconCards('diffGrid', DIFFERENTIATORS);
+
+lucide.createIcons();
+
+/* =========================================================
+   HERO SPREADSHEET ANIMATION
+   ========================================================= */
+const heroHeaders = ['','A','B','C','D','E'];
+const heroRows = [
+  ['1','ID','Region','Product','Units','Revenue'],
+  ['2','1042','North','Laptop','12','₹9.6L'],
+  ['3','1043','West','Monitor','28','₹4.2L'],
+  ['4','1044','South','Laptop','9','₹7.2L'],
+  ['5','1045','East','Tablet','34','₹3.1L'],
+];
+const sheetEl = document.getElementById('heroSheet');
+heroHeaders.forEach(h=> sheetEl.appendChild(el('div','cell head', h)));
+heroRows.forEach((row,ri)=>{
+  row.forEach((val,ci)=>{
+    const isHl = ri===2 && ci===5;
+    const cls = ci===0 ? 'cell rowhead' : 'cell'+(isHl?' hl':'')+(ci===5&&!isHl?' gold':'');
+    sheetEl.appendChild(el('div',cls,val));
+  });
+});
+[30,55,40,70,50,85,65,95].forEach((h,i)=>{ const bar=el('i'); bar.style.height=h+'%'; bar.style.animationDelay=(i*0.06)+'s'; document.getElementById('heroChart').appendChild(bar); });
+
+// formula typing loop
+const formulas = ["=XLOOKUP(B2,Data!A:A,Data!D:D)","=SUMIFS(Rev,Region,'North')","=IFERROR(VLOOKUP(...),'N/A')","=TEXTJOIN(', ',TRUE,A2:A10)"];
+let fi=0, ci=0, typing=true;
+const formulaEl = document.getElementById('formulaText');
+function typeLoop(){
+  const current = formulas[fi];
+  if(typing){
+    ci++; formulaEl.textContent = current.slice(0,ci);
+    if(ci>=current.length){ typing=false; setTimeout(typeLoop, 1400); return; }
+  } else {
+    ci--; formulaEl.textContent = current.slice(0,ci);
+    if(ci<=0){ typing=true; fi=(fi+1)%formulas.length; }
+  }
+  setTimeout(typeLoop, typing?55:28);
+}
+typeLoop();
+
+// KPI counters
+function animateCounters(){
+  document.querySelectorAll('[data-count]').forEach(elx=>{
+    if(elx.dataset.done) return;
+    const target = parseFloat(elx.dataset.count);
+    const suffix = elx.dataset.suffix || '';
+    const prefix = elx.textContent.includes('₹') ? '₹' : '';
+    let cur = 0; const dur=1400; const start=performance.now();
+    function step(t){
+      const p = Math.min((t-start)/dur,1);
+      cur = target*(1-Math.pow(1-p,3));
+      elx.textContent = prefix + cur.toFixed(target%1===0?0:1) + suffix;
+      if(p<1) requestAnimationFrame(step); else elx.dataset.done=1;
+    }
+    requestAnimationFrame(step);
+  });
+}
+setTimeout(animateCounters, 500);
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+const revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:0.15});
+revealEls.forEach(e=> io.observe(e));
+
+/* =========================================================
+   TRAINER MODE + PRESENTATION MODE (shared section list)
+   ========================================================= */
+const SECTIONS = Array.from(document.querySelectorAll('.section[data-trainer]'));
+const trainerFab = document.getElementById('trainerFab');
+const trainerPanel = document.getElementById('trainerPanel');
+const tpLinks = document.getElementById('tpLinks');
+const tpProgressBar = document.getElementById('tpProgressBar');
+
+SECTIONS.forEach((s,i)=>{
+  const link = el('div','tp-link', `<span>${s.dataset.trainer}</span><span style="font-family:var(--mono); font-size:11px; color:var(--muted-2);">${String(i+1).padStart(2,'0')}</span>`);
+  link.addEventListener('click', ()=>{ s.scrollIntoView({behavior:'smooth', block:'start'}); });
+  link.dataset.idx = i;
+  tpLinks.appendChild(link);
+});
+
+trainerFab.addEventListener('click', ()=> trainerPanel.classList.toggle('open'));
+document.getElementById('tpClose').addEventListener('click', ()=> trainerPanel.classList.remove('open'));
+
+function currentSectionIndex(){
+  let idx=0;
+  const y = window.scrollY + window.innerHeight*0.3;
+  SECTIONS.forEach((s,i)=>{ if(s.offsetTop <= y) idx=i; });
+  return idx;
+}
+window.addEventListener('scroll', ()=>{
+  const idx = currentSectionIndex();
+  document.querySelectorAll('.tp-link').forEach((l,i)=> l.classList.toggle('active', i===idx));
+  tpProgressBar.style.width = ((idx+1)/SECTIONS.length*100)+'%';
+});
+document.getElementById('tpPrev').addEventListener('click', ()=>{
+  const idx = Math.max(0, currentSectionIndex()-1);
+  SECTIONS[idx].scrollIntoView({behavior:'smooth', block:'start'});
+});
+document.getElementById('tpNext').addEventListener('click', ()=>{
+  const idx = Math.min(SECTIONS.length-1, currentSectionIndex()+1);
+  SECTIONS[idx].scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* ---- Presentation / Demo Mode ---- */
+let presentIndex = 0;
+const presentBar = document.getElementById('presentBar');
+const presentProgress = document.querySelector('#presentProgress i');
+const pbTitle = document.getElementById('pbTitle');
+
+function enterPresentMode(){
+  document.body.classList.add('present-mode');
+  trainerPanel.classList.remove('open');
+  presentIndex = 0;
+  showPresentSlide();
+}
+function exitPresentMode(){
+  document.body.classList.remove('present-mode');
+  SECTIONS.forEach(s=> s.classList.remove('p-active'));
+}
+function showPresentSlide(){
+  SECTIONS.forEach((s,i)=> s.classList.toggle('p-active', i===presentIndex));
+  const label = SECTIONS[presentIndex].dataset.trainer;
+  pbTitle.textContent = `SECTION ${presentIndex+1} / ${SECTIONS.length} · ${label.toUpperCase()}`;
+  presentProgress.style.width = ((presentIndex+1)/SECTIONS.length*100)+'%';
+  window.scrollTo(0,0);
+}
+function presentNext(){ presentIndex = Math.min(SECTIONS.length-1, presentIndex+1); showPresentSlide(); }
+function presentPrev(){ presentIndex = Math.max(0, presentIndex-1); showPresentSlide(); }
+
+document.getElementById('startDemoBtn').addEventListener('click', enterPresentMode);
+document.getElementById('startDemoBtn2').addEventListener('click', enterPresentMode);
+document.getElementById('presNext').addEventListener('click', presentNext);
+document.getElementById('presPrev').addEventListener('click', presentPrev);
+document.getElementById('presExit').addEventListener('click', exitPresentMode);
+
+window.addEventListener('keydown', (e)=>{
+  if(!document.body.classList.contains('present-mode')) return;
+  if(e.key==='ArrowRight') presentNext();
+  if(e.key==='ArrowLeft') presentPrev();
+  if(e.key==='Escape') exitPresentMode();
+});
+lucide.createIcons();
+</script>
+</body>
+</html>
