@@ -7,7 +7,7 @@
 <meta name="description" content="Excel 360 by PragnyX Learning — a 1-month live learning journey from Excel fundamentals to Power Query, dashboards, MIS, automation, AI and real-world projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" onload="if(window.safeCreateIcons) window.safeCreateIcons();" onerror="this.onerror=null;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js';s.onload=function(){if(window.safeCreateIcons) window.safeCreateIcons();};document.head.appendChild(s);"></script>
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -343,29 +343,6 @@ footer{border-top:1px solid var(--border); padding:56px 0 36px;}
 .foot-col a, .foot-col span{display:block; font-size:13.5px; color:var(--muted); margin-bottom:8px;}
 .foot-bottom{margin-top:44px; padding-top:24px; border-top:1px solid var(--border); font-size:12.5px; color:var(--muted-2); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
 
-/* ============ TRAINER MODE FAB + PANEL ============ */
-#trainerFab{
-  position:fixed; bottom:26px; right:26px; z-index:300; background:var(--ink); border:1px solid var(--ink);
-  color:#f2f6f3; padding:13px 20px; border-radius:100px; display:flex; align-items:center; gap:10px; cursor:pointer;
-  font-weight:600; font-size:13.5px; box-shadow:0 14px 34px -10px rgba(14,26,18,.45); backdrop-filter:blur(10px);
-}
-#trainerFab:hover{background:var(--green-700); border-color:var(--green-700); transform:translateY(-2px);}
-#trainerPanel{
-  position:fixed; bottom:88px; right:26px; z-index:300; width:300px; max-height:70vh; overflow:auto;
-  background:rgba(10,15,12,0.96); border:1px solid var(--border-hi); border-radius:18px; backdrop-filter:blur(14px);
-  box-shadow:0 30px 80px -20px rgba(0,0,0,.8); padding:18px; display:none; flex-direction:column; gap:4px;
-}
-#trainerPanel.open{display:flex;}
-#trainerPanel .tp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
-#trainerPanel .tp-head h5{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--green-bright);}
-.tp-link{padding:10px 12px; border-radius:10px; font-size:13.5px; color:var(--muted); cursor:pointer; display:flex; align-items:center; justify-content:space-between;}
-.tp-link:hover{background:rgba(255,255,255,0.06); color:var(--ink);}
-.tp-link.active{background:var(--green-900); color:var(--green-glow);}
-.tp-nav{display:flex; gap:8px; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;}
-.tp-nav button{flex:1; padding:9px; border-radius:10px; border:1px solid var(--border-hi); background:transparent; color:var(--ink); font-size:12.5px; cursor:pointer;}
-.tp-nav button:hover{border-color:var(--green-bright); color:var(--green-bright);}
-.tp-progress{height:3px; background:var(--border); border-radius:3px; margin-top:12px; overflow:hidden;}
-.tp-progress i{display:block; height:100%; background:var(--green-bright); width:0%; transition:width .3s ease;}
 
 /* ============ PRESENTATION / DEMO MODE ============ */
 body.present-mode{overflow:hidden;}
@@ -431,9 +408,6 @@ body.present-mode #exitPresent{display:flex;}
       <a href="#outcomes">Outcomes</a>
       <a href="#formats">Formats</a>
     </nav>
-    <div class="nav-cta">
-      <button class="btn btn-primary" id="startDemoBtn">Start Demo</button>
-    </div>
   </div>
 </header>
 
@@ -453,12 +427,14 @@ body.present-mode #exitPresent{display:flex;}
         <span class="pill">✅ Practical Learning</span>
         <span class="pill">✅ Real-World Projects</span>
         <span class="pill">✅ Personalized Training</span>
+        <span class="pill">✅ Industry-Ready Skills</span>
       </div>
       <div class="stat-row">
         <div class="stat"><div class="num">22–26</div><div class="label">Live Sessions</div></div>
-        <div class="stat"><div class="num">~75 Min</div><div class="label">Per Session</div></div>
+        <div class="stat"><div class="num">75 Min</div><div class="label">Per Session</div></div>
+        <div class="stat"><div class="num">32+ Hours</div><div class="label">Live Training</div></div>
         <div class="stat"><div class="num">1 Month</div><div class="label">Duration</div></div>
-        <div class="stat"><div class="num">Live</div><div class="label">Online Mode</div></div>
+        <div class="stat"><div class="num">Real Projects</div><div class="label">Industry Case Studies</div></div>
       </div>
     </div>
 
@@ -531,22 +507,22 @@ body.present-mode #exitPresent{display:flex;}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Why This Program</span>
-      <h2>Excel Seekhna Enough Nahi Hai. Excel Use Karna Aana Chahiye.</h2>
-      <p>Basic formulas se lekar industry-ready workflows tak — teeno level ka fark saaf dikhta hai.</p>
+      <h2>Knowing Excel Isn't Enough. You Need to Know How to Use It.</h2>
+      <p>From basic formulas to industry-ready workflows — the difference across all three levels is clear.</p>
     </div>
     <div class="tier-grid stagger" id="tierGrid"></div>
     <div class="flowline reveal" id="tierFlow" style="margin-top:36px; justify-content:center;"></div>
   </div>
 </section>
 
-<!-- ============ SECTION — WHAT WE OFFER ============ -->
-<section id="what-we-offer" class="section" data-trainer="What We Offer">
+<!-- ============ SECTION — WHAT STUDENTS GET ============ -->
+<section id="what-we-offer" class="section" data-trainer="What Students Get">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">What You Get With PragnyX</span>
-      <h2>What We Offer</h2>
+      <h2>What Students Get</h2>
     </div>
-    <div class="who-grid stagger" id="offerGrid" style="grid-template-columns:repeat(4,1fr);"></div>
+    <div class="check-grid stagger" id="offerGrid"></div>
   </div>
 </section>
 
@@ -570,7 +546,7 @@ body.present-mode #exitPresent{display:flex;}
     <div class="section-head reveal">
       <span class="eyebrow">Your Learning Journey</span>
       <h2>From Basic to Industry-Ready</h2>
-      <p>Fourteen levels, one continuous path — each one builds directly on the last.</p>
+      <p>Five phases, one continuous path — each one builds directly on the last.</p>
     </div>
     <div class="roadmap reveal">
       <div class="roadmap-line"></div>
@@ -584,8 +560,8 @@ body.present-mode #exitPresent{display:flex;}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Complete Curriculum</span>
-      <h2>15 Phases. Zero Fluff.</h2>
-      <p>Click a module to expand it. Every function and technique the course covers, organized the way it's actually taught.</p>
+      <h2>5 Phases. Zero Fluff.</h2>
+      <p>Click a phase to expand it. Every function and technique the course covers, organized into 5 major learning phases for easier understanding.</p>
     </div>
     <div id="accordion"></div>
   </div>
@@ -595,7 +571,7 @@ body.present-mode #exitPresent{display:flex;}
 <section id="dashboard" class="section" data-trainer="Dashboard">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Phase 05 · Interactive Excel Dashboard</span>
+      <span class="eyebrow">Phase 03 · Interactive Excel Dashboard</span>
       <h2>Turn Numbers Into a Story.</h2>
       <p>Students build full interactive dashboards — the same layouts used for Sales, HR, Finance, Operations and Marketing reporting.</p>
     </div>
@@ -629,7 +605,7 @@ body.present-mode #exitPresent{display:flex;}
 <section id="powerquery" class="section" data-trainer="Power Query">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Phase 03 · Data Preparation & Power Query</span>
+      <span class="eyebrow">Phase 02 · Data Preparation & Power Query</span>
       <h2>Stop Repeating the Same Work Every Month.</h2>
       <p>Build a query once. Refresh it forever. This is where Excel stops being manual.</p>
     </div>
@@ -642,7 +618,7 @@ body.present-mode #exitPresent{display:flex;}
 <section id="mis" class="section" data-trainer="MIS">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Phase 11 · MIS Reporting</span>
+      <span class="eyebrow">Phase 03 · MIS Reporting</span>
       <h2>Learn How MIS Actually Works in Companies</h2>
       <p>From raw rows to a management-ready report — the exact workflow used inside real MIS teams.</p>
     </div>
@@ -657,9 +633,9 @@ body.present-mode #exitPresent{display:flex;}
 <section id="automation" class="section" data-trainer="Automation">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Phase 07 · From Manual to Automated Excel</span>
-      <h2>From Manual Excel to Automated Excel</h2>
-      <p>Macros and practical VBA — enough to automate the reports you'd otherwise build by hand every week.</p>
+      <span class="eyebrow">Phase 04 · Excel Automation with Macros & VBA</span>
+      <h2>Excel Automation with Macros & VBA</h2>
+      <p>Practical Excel automation, not an advanced VBA developer course — enough to automate the reports you'd otherwise build by hand every week.</p>
     </div>
     <div class="who-grid stagger" id="autoGrid" style="grid-template-columns:repeat(3,1fr);"></div>
     <div class="section-head reveal" style="margin:44px 0 0;">
@@ -674,9 +650,9 @@ body.present-mode #exitPresent{display:flex;}
 <section id="ai" class="section" data-trainer="Excel + AI">
   <div class="wrap" style="text-align:center;">
     <div class="section-head reveal" style="margin:0 auto 40px; text-align:center;">
-      <span class="eyebrow">Phase 08 · Modern Excel Professional</span>
-      <h2>The Modern Excel Professional Uses AI</h2>
-      <p style="margin:0 auto;">Formula generation, error debugging, VBA assistance and report insights — used as a force multiplier, not a shortcut around understanding.</p>
+      <span class="eyebrow">Phase 04 · Excel + AI</span>
+      <h2>Excel + AI — The Modern Excel Professional Uses AI</h2>
+      <p style="margin:0 auto;">Formula generation, error debugging, VBA assistance and report insights — used as a force multiplier, not a shortcut around understanding. Copilot / compatible AI tools, where available.</p>
     </div>
     <div class="reveal-scale" style="display:inline-flex; align-items:center; gap:18px; flex-wrap:wrap; justify-content:center; font-family:var(--mono); font-size:15px;">
       <span class="pill">Human</span><span style="color:var(--muted-2);">+</span><span class="pill">Excel</span><span style="color:var(--muted-2);">+</span><span class="pill">AI</span>
@@ -693,9 +669,9 @@ body.present-mode #exitPresent{display:flex;}
 <section id="industry-workflow" class="section" data-trainer="Industry Workflow">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Phase 12 · Industry Workflow</span>
-      <h2>How It Actually Works in the Workplace</h2>
-      <p>This is where "Basic to Industry-Ready" becomes believable — the exact 10-step process used on the job.</p>
+      <span class="eyebrow">Industry Workflow</span>
+      <h2>Learn the Complete Excel Workflow Used in the Workplace</h2>
+      <p>This is where "Basic to Industry-Ready" becomes believable — the exact 10-step process used on the job, woven through every phase of the program.</p>
     </div>
     <div class="roadmap reveal">
       <div class="roadmap-line"></div>
@@ -709,8 +685,8 @@ body.present-mode #exitPresent{display:flex;}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Real-World Projects</span>
-      <h2>Six Projects. Six Industries.</h2>
-      <p>Every project mirrors a real workplace deliverable, start to finish.</p>
+      <h2>6 Guided Industry Case Studies. Plus 1 Final Capstone.</h2>
+      <p>Six guided case studies across six industries, each walked through step by step during the program — followed by one independent final capstone project.</p>
     </div>
     <div class="proj-grid stagger" id="projGrid"></div>
   </div>
@@ -720,9 +696,9 @@ body.present-mode #exitPresent{display:flex;}
 <section id="capstone" class="section" data-trainer="Capstone">
   <div class="wrap">
     <div class="capstone reveal-scale">
-      <span class="eyebrow">Final Capstone Project</span>
+      <span class="eyebrow">1 Final Capstone Project</span>
       <h2 style="font-size:clamp(26px,3.6vw,38px);">Your Final Industry Simulation</h2>
-      <p style="color:var(--muted); max-width:640px; margin-top:14px; font-size:15.5px;">Students receive a messy business dataset — 50,000+ records, duplicates, missing values, incorrect formats, spread across multiple files and months — and independently take it from raw import to business insight.</p>
+      <p style="color:var(--muted); max-width:640px; margin-top:14px; font-size:15.5px;">In addition to the 6 guided industry case studies covered during the program, students independently take a messy business dataset — 50,000+ records, duplicates, missing values, incorrect formats, spread across multiple files and months — from raw import to business insight.</p>
       <div class="cap-badges">
         <span class="pill">50,000+ records</span>
         <span class="pill">Duplicate records</span>
@@ -764,15 +740,16 @@ body.present-mode #exitPresent{display:flex;}
 <section id="career-prep" class="section" data-trainer="Career Preparation">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Phase 14 · Excel Career Readiness</span>
+      <span class="eyebrow">Phase 05 · Excel Career Readiness</span>
       <h2>Interview Preparation & 3+ Mock Interviews</h2>
-      <p>Resume positioning, the questions companies actually ask, and three structured mock interview rounds with feedback.</p>
+      <p>Resume positioning, the questions companies actually ask, and three structured mock interview rounds — with personalized feedback to identify improvement areas.</p>
     </div>
     <div class="round-grid stagger" id="roundGrid"></div>
     <div class="chip-row reveal" id="interviewTopics" style="margin-top:28px; justify-content:center; display:flex; flex-wrap:wrap; gap:8px;"></div>
     <div class="quote-block reveal" style="margin-top:32px;">
       Practical Assessment: "Create an MIS report and present your findings."
     </div>
+    <p class="reveal" style="color:var(--muted-2); font-size:13px; max-width:680px; margin-top:22px;">Excel 360 is designed to help learners build practical Excel skills, project experience and interview confidence for Excel/MIS/Data-related roles such as MIS Executive, MIS Analyst, Reporting Executive, Data Analyst (Excel-focused), Operations Analyst and Business Analyst (Excel-focused). It does not guarantee employment or salary outcomes.</p>
   </div>
 </section>
 
@@ -843,13 +820,14 @@ body.present-mode #exitPresent{display:flex;}
     <div class="struct-row reveal">
       <div><div class="s-label">Duration</div><div class="s-val">1 Month</div></div>
       <div><div class="s-label">Live Sessions</div><div class="s-val">22–26</div></div>
-      <div><div class="s-label">Session Duration</div><div class="s-val">~75 Minutes</div></div>
+      <div><div class="s-label">Session Duration</div><div class="s-val">75 Minutes</div></div>
+      <div><div class="s-label">Total Live Training</div><div class="s-val">32+ Hours</div></div>
       <div><div class="s-label">Mode</div><div class="s-val">Live Online</div></div>
       <div><div class="s-label">Learning Style</div><div class="s-val">Practical + Project Based</div></div>
       <div><div class="s-label">Formats</div><div class="s-val">1:1 / 1:5 / 1:10</div></div>
       <div><div class="s-label">Recording Access</div><div class="s-val">2 Months</div></div>
       <div><div class="s-label">Mock Interviews</div><div class="s-val">3+</div></div>
-      <div><div class="s-label">Projects</div><div class="s-val">Multiple Real-World Projects</div></div>
+      <div><div class="s-label">Projects</div><div class="s-val">6 Case Studies + 1 Capstone</div></div>
       <div><div class="s-label">Capstone</div><div class="s-val">Industry Simulation</div></div>
       <div><div class="s-label">Certificate</div><div class="s-val">Excel 360 Completion Certificate*</div></div>
     </div>
@@ -857,16 +835,16 @@ body.present-mode #exitPresent{display:flex;}
   </div>
 </section>
 
-<!-- ============ SECTION — 35% OFFER ============ -->
-<section id="offer" class="section" data-trainer="35% Offer">
+<!-- ============ SECTION — SPECIAL DEMO OFFER ============ -->
+<section id="offer" class="section" data-trainer="Special Demo Offer">
   <div class="wrap">
     <div class="offer-box reveal-scale">
       <span class="eyebrow" style="justify-content:center;">🎁 Special Demo Offer</span>
-      <h2 style="font-size:clamp(26px,3.6vw,38px);">Get 35% OFF</h2>
-      <div class="offer-code">🏷️ ABHI25</div>
-      <p style="color:var(--muted); font-size:13.5px; max-width:420px; margin:0 auto;">Available for learners enrolling through this demo offer.</p>
+      <h2 style="font-size:clamp(26px,3.6vw,38px);">Get 5% OFF</h2>
+      <div class="offer-code">🏷️ ABHI5</div>
+      <p style="color:var(--muted); font-size:13.5px; max-width:420px; margin:0 auto;">Available for learners enrolling through this demo session. Talk to a Learning Counsellor to apply the code.</p>
       <div class="hero-ctas" style="justify-content:center; margin-top:26px;">
-        <a href="mailto:hello@pragnyx.learning?subject=Interested%20-%20Basic%20to%20Industry-Ready%20Excel%20(ABHI25)" class="btn btn-primary"><span>I'm Interested</span></a>
+        <a href="mailto:learning@pragnyx.in?subject=Interested%20-%20Excel%20360%20(ABHI5)" class="btn btn-primary"><span>Talk to a Learning Counsellor</span></a>
       </div>
     </div>
   </div>
@@ -893,8 +871,8 @@ body.present-mode #exitPresent{display:flex;}
     <h2>Ready to Move Beyond Basic Excel?</h2>
     <p>Learn. Practice. Build. Analyze. — Basic to Industry-Ready Excel · 1 Month · 22–26 Live Sessions · Live Online</p>
     <div class="hero-ctas" style="justify-content:center;">
-      <button class="btn btn-primary" id="startDemoBtn2"><span>Explore Program</span></button>
-      <a href="mailto:hello@pragnyx.learning?subject=Interested%20-%20Basic%20to%20Industry-Ready%20Excel" class="btn btn-ghost"><span>I'm Interested</span></a>
+      <button class="btn btn-primary" id="startDemoBtn2"><span>Explore the Excel 360 Program</span></button>
+      <a href="mailto:learning@pragnyx.in?subject=Interested%20-%20Excel%20360%20Program" class="btn btn-ghost"><span>Talk to a Learning Counsellor</span></a>
     </div>
     <div class="hero-tags" style="justify-content:center; margin-top:26px;">
       <span class="pill">1:1</span><span class="pill">1:5</span><span class="pill">1:10</span>
@@ -915,8 +893,9 @@ body.present-mode #exitPresent{display:flex;}
         <div class="foot-col"><h5>Program</h5><a href="#curriculum">Excel 360: Basic to Industry-Ready</a></div>
         <div class="foot-col"><h5>Learning Journey</h5><a href="#roadmap">Roadmap</a></div>
         <div class="foot-col"><h5>Projects</h5><a href="#projects">Real-World Projects</a></div>
-        <div class="foot-col"><h5>Contact</h5><span>hello@pragnyx.learning</span></div>
-        <div class="foot-col"><h5>Website</h5><span>www.pragnyx.learning</span></div>
+        <div class="foot-col"><h5>Contact</h5><span>learning@pragnyx.in</span></div>
+        <div class="foot-col"><h5>Contact</h5><span>+91 9421514816</span></div>
+        <div class="foot-col"><h5>Website</h5><span>www.pragnyx.in</span></div>
       </div>
     </div>
     <div class="foot-bottom">
@@ -925,15 +904,6 @@ body.present-mode #exitPresent{display:flex;}
     </div>
   </div>
 </footer>
-
-<!-- ============ TRAINER MODE ============ -->
-<button id="trainerFab">🎤 <span>Trainer Mode</span></button>
-<div id="trainerPanel" class="dark-surface">
-  <div class="tp-head"><h5>Trainer Navigation</h5><span data-lucide="x" id="tpClose" style="cursor:pointer; width:16px; height:16px; color:var(--muted);"></span></div>
-  <div id="tpLinks"></div>
-  <div class="tp-progress"><i id="tpProgressBar"></i></div>
-  <div class="tp-nav"><button id="tpPrev">◂ Previous</button><button id="tpNext">Next ▸</button></div>
-</div>
 
 <!-- ============ PRESENTATION MODE BAR ============ -->
 <div id="presentBar" class="dark-surface">
@@ -947,7 +917,12 @@ body.present-mode #exitPresent{display:flex;}
 <div id="presentProgress"><i></i></div>
 
 <script>
-lucide.createIcons();
+function safeCreateIcons(){
+  if(typeof lucide !== 'undefined' && lucide.createIcons){
+    try{ lucide.createIcons(); } catch(e){ console.warn('lucide icons failed to render:', e); }
+  }
+}
+safeCreateIcons();
 
 /* =========================================================
    STRUCTURED CONTENT CONFIG — edit here to update the site
@@ -968,93 +943,42 @@ const WHO_USES = [
 ];
 
 const ROADMAP = [
-  "Excel Fundamentals for Professionals","Formula & Function Mastery","Data Prep & Power Query","Professional Data Analysis (Pivot)",
-  "Interactive Dashboard Development","Business Analytics","Automation (Macros & VBA)","Modern Excel Professional (AI)",
-  "Excel + Python (Bonus)","Real-World Projects","MIS Reporting","Industry Workflow",
-  "Professional Excel Standards","Excel Career Readiness","Final Assessment & Certification"
+  "Excel Foundations & Advanced Excel","Advanced Formulas, Data Cleaning & Power Query","Data Analysis, MIS & Interactive Dashboards",
+  "Automation, VBA & Excel + AI","Industry Projects, Capstone & Career Readiness"
 ];
 
 const CURRICULUM = [
-  {mod:"01", title:"Excel Fundamentals for Professionals", sub:"Excel ko professional working tool ke tarah use karna", groups:[
-    {label:"Foundations", items:["Excel interface & workbook structure","Worksheets, rows, columns & ranges","Efficient data entry","Data types","Cell references","Relative, absolute & mixed references"]},
-    {label:"Productivity Techniques", items:["Advanced selection techniques","Keyboard shortcuts","Freeze panes","Find & Replace","Go To Special","Advanced copy/paste","Paste Special","Flash Fill","AutoFill"]},
-    {label:"Professional Formatting", items:["Number formats","Custom number formats","Date/time formatting","Text formatting","Conditional formatting","Formula-based conditional formatting","Cell styles","Tables"]},
-    {label:"Structure & Protection", items:["Professional worksheet design","Protection & permissions","Workbook/file settings"]},
+  {mod:"01", title:"Excel Foundations & Advanced Excel", sub:"Using Excel as a professional working tool", groups:[
+    {label:"Foundations", items:["Excel interface & workbook structure","Professional data entry","Cell references","Relative, absolute & mixed references"]},
+    {label:"Advanced Selection & Shortcuts", items:["Advanced selection techniques","Keyboard shortcuts","Advanced copy/paste","Paste Special","Flash Fill"]},
+    {label:"Formatting & Validation", items:["Formatting","Custom number formats","Conditional formatting","Formula-based conditional formatting","Data validation"]},
+    {label:"Professional Standards", items:["Professional worksheet design","Protection","File organization & naming conventions","Excel productivity techniques"]},
   ]},
-  {mod:"02", title:"Formula & Function Mastery", sub:"Business problems ko formulas se solve karna", groups:[
-    {label:"Logical Functions", items:["IF","IFS","AND","OR","XOR","IFERROR","IFNA","SWITCH"]},
-    {label:"Mathematical & Aggregation", items:["SUM","SUMIF","SUMIFS","COUNT","COUNTA","COUNTIF","COUNTIFS","AVERAGE","AVERAGEIF","AVERAGEIFS","MAX","MIN","MAXIFS","MINIFS","ROUND","ROUNDUP","ROUNDDOWN","SUMPRODUCT"]},
-    {label:"Lookup & Reference", items:["VLOOKUP","HLOOKUP","XLOOKUP","LOOKUP","INDEX","MATCH","XMATCH","OFFSET","CHOOSE","ADDRESS","INDIRECT","GETPIVOTDATA"]},
-    {label:"Dynamic Array Functions", items:["FILTER","SORT","SORTBY","UNIQUE","SEQUENCE","TAKE","DROP","EXPAND","CHOOSECOLS","CHOOSEROWS","HSTACK","VSTACK","WRAPROWS","WRAPCOLS"]},
-    {label:"Modern Excel Functions", items:["LET","LAMBDA","MAP","REDUCE","SCAN","BYROW","BYCOL","MAKEARRAY"]},
-    {label:"Text Functions", items:["LEFT","RIGHT","MID","LEN","FIND","SEARCH","SUBSTITUTE","REPLACE","TRIM","CLEAN","PROPER","UPPER","LOWER","CONCAT","TEXTJOIN","TEXTSPLIT","TEXTBEFORE","TEXTAFTER","VALUE","TEXT","EXACT","REGEXEXTRACT","REGEXREPLACE","REGEXTEST"]},
-    {label:"Date & Time", items:["TODAY","NOW","DATE","DAY","MONTH","YEAR","DATEDIF","DAYS","EDATE","EOMONTH","NETWORKDAYS","WORKDAY","WEEKDAY","WEEKNUM","YEARFRAC"]},
-    {label:"Statistical & Analytical", items:["MEDIAN","MODE","STDEV","VAR","RANK","LARGE","SMALL","FORECAST","GROWTH","CORREL","PERCENTILE","QUARTILE"]},
-    {label:"Financial", items:["PMT","FV","PV","RATE","NPV","IRR","Financial analysis functions"]},
-    {label:"Formula Engineering", items:["Nested formulas","Dynamic formulas","Error handling","Formula auditing","Evaluate Formula","Formula debugging","Building reusable formulas","Performance optimization"]},
+  {mod:"02", title:"Advanced Formulas, Data Cleaning & Power Query", sub:"Solving business problems with formulas, then turning raw files into clean, refreshable reports", groups:[
+    {label:"Logical & Mathematical Functions", items:["IF","IFS","AND","OR","IFERROR","SUMIFS","COUNTIFS","AVERAGEIFS","ROUND","SUMPRODUCT"]},
+    {label:"Text, Date & Time Functions", items:["LEFT/RIGHT/MID","TRIM","CLEAN","TEXTJOIN","TEXTSPLIT","DATE","DATEDIF","EDATE","EOMONTH","NETWORKDAYS","WORKDAY"]},
+    {label:"Lookup & Dynamic Array Functions", items:["VLOOKUP","XLOOKUP","INDEX MATCH","FILTER","SORT","UNIQUE","LET","LAMBDA"]},
+    {label:"Statistical & Financial Functions", items:["MEDIAN","RANK","LARGE/SMALL","PERCENTILE","PMT","NPV","IRR"]},
+    {label:"Formula Auditing & Debugging", items:["Nested formulas","Error handling","Formula auditing","Evaluate Formula","Formula debugging"]},
+    {label:"Data Cleaning", items:["Understanding messy data","Duplicate removal","Missing values","Data standardization","Error identification"]},
+    {label:"Power Query", items:["Get Data (Excel, CSV, Folder)","Merge Queries","Append Queries","Group By","Custom Columns","Refresh","Queries & Connections"]},
   ]},
-  {mod:"03", title:"Data Preparation & Power Query", sub:"Raw files → clean dataset → refreshable report", groups:[
-    {label:"Data Cleaning", items:["Understanding messy data","Duplicate removal","Missing values","Incorrect data types","Text cleanup","Date standardization","Data validation","Error identification","Data consistency"]},
-    {label:"Power Query — Get Data & Editor", items:["Get Data (Excel, CSV, Folder)","Multiple-file consolidation","Power Query Editor","Data types","Remove rows/columns","Filter","Sort","Split columns"]},
-    {label:"Power Query — Combine & Transform", items:["Merge columns","Replace values","Remove duplicates","Fill operations","Group By","Merge Queries","Append Queries","Custom & Conditional Columns","Parameters","Refresh","Queries & Connections"]},
-    {label:"Practical Project", items:["Monthly Sales Data Automation — multiple raw files → Power Query → clean dataset → final report"]},
+  {mod:"03", title:"Data Analysis, MIS & Interactive Dashboards", sub:"Raw sales data → Pivot → MIS report → interactive dashboard", groups:[
+    {label:"PivotTables & PivotCharts", items:["Creating PivotTables","Slicers","Timelines","Data grouping","Calculated fields","PivotCharts"]},
+    {label:"Business Analysis", items:["Descriptive analytics","Sales analysis","HR analysis","Finance analysis","Inventory analysis"]},
+    {label:"MIS Reporting", items:["Daily / Weekly / Monthly MIS","KPI reports","Target vs Achievement","Sales & Performance MIS","Attendance & Employee MIS"]},
+    {label:"Interactive Dashboards", items:["Dynamic ranges","KPI cards","Advanced charts","Sales / HR / Finance / Inventory dashboards"]},
   ]},
-  {mod:"04", title:"Professional Data Analysis", sub:"Raw sales data → summary report", groups:[
-    {label:"PivotTables", items:["Creating PivotTables","Rows/Columns/Values","Filters","Grouping","Date grouping","Calculated fields","% of total","Running total","Ranking","Multiple data sources","Dynamic ranges","Refreshing PivotTables","GETPIVOTDATA"]},
-    {label:"PivotCharts", items:["Column","Bar","Line","Pie/Doughnut","Combo","Custom PivotCharts"]},
-    {label:"Slicers & Timeline", items:["Slicers","Multi-select","Timeline","Connecting slicers to multiple PivotTables"]},
-    {label:"Business Analysis", items:["Sales analysis","Product analysis","Customer analysis","Region analysis","Employee analysis","Monthly trend analysis","Target vs Actual","Growth analysis"]},
+  {mod:"04", title:"Automation, VBA & Excel + AI", sub:"Practical automation — not a VBA developer course", groups:[
+    {label:"Macro Recording", items:["Macro recording","Relative vs absolute recording"]},
+    {label:"VBA Editor Basics", items:["VBA Editor","Variables","Data types","IF","Loops","Functions","Worksheets","Workbooks","Ranges","Cells"]},
+    {label:"Practical Automation", items:["Report automation","Formatting automation","Data cleaning automation","Export automation","Basic email automation"]},
+    {label:"Excel + AI", items:["AI-assisted formula generation","Formula explanation","Error debugging","Data analysis","Dashboard ideas","VBA assistance","Power Query assistance","AI productivity workflows","Copilot / compatible AI tools, where available"]},
   ]},
-  {mod:"05", title:"Interactive Excel Dashboard", sub:"KPI design, layout & data storytelling", groups:[
-    {label:"Dashboard Fundamentals", items:["What makes a good dashboard?","KPI design","Dashboard layout","Data storytelling","Choosing the right chart","Avoiding misleading charts"]},
-    {label:"Chart Types", items:["Column","Bar","Line","Area","Combo","Pie","Doughnut","Scatter","Bubble","Histogram","Funnel","Waterfall","Gantt","Treemap","Sunburst","Radar","Sparklines"]},
-    {label:"Interactive Elements", items:["Slicers","Timelines","Dynamic ranges","Dynamic charts","Named ranges","Form controls","Conditional formatting","KPI cards","Interactive filters"]},
-    {label:"Dashboard Projects", items:["Sales Dashboard","HR Dashboard","Finance Dashboard","Inventory Dashboard","Customer Support Dashboard","Marketing Dashboard"]},
-  ]},
-  {mod:"06", title:"Business Analytics with Excel", sub:"From raw numbers to business insight", groups:[
-    {label:"Descriptive Analytics", items:["Mean","Median","Mode","Standard deviation","Variance","Percentiles","Quartiles","Distribution"]},
-    {label:"Business Metrics", items:["Revenue","Profit","Margin","Growth","Conversion","Attrition","Productivity","Achievement %","Target vs Actual"]},
-    {label:"Analysis Techniques", items:["Trend analysis","Variance analysis","Contribution analysis","Pareto analysis","Top/Bottom analysis","Cohort-style analysis","What-if analysis"]},
-    {label:"What-If Analysis", items:["Goal Seek","Scenario Manager","Data Tables","Forecast Sheet"]},
-    {label:"Dynamic Reporting", items:["Dynamic named ranges","Auto-expanding reports","Refreshable reports","Automated summaries"]},
-  ]},
-  {mod:"07", title:"From Manual Excel to Automated Excel", sub:"Automate the reports you'd otherwise build by hand", groups:[
-    {label:"Macros", items:["What are macros?","Macro recording","Macro security","Relative vs absolute recording","Running macros","Editing recorded macros"]},
-    {label:"VBA Basics", items:["VBA Editor","Modules","Variables","Data types","IF statements","Loops","Functions","Objects","Worksheets","Workbooks","Ranges","Cells"]},
-    {label:"Practical VBA", items:["Formatting automation","Data cleaning","Sheet creation","Report generation","PDF/export automation","File handling","Refresh automation","Basic email automation"]},
-    {label:"Automation Project", items:["One-click MIS Report Generator — raw data → clean → refresh → dashboard/report → export"]},
-  ]},
-  {mod:"08", title:"Modern Excel Professional", sub:"Use AI to multiply your productivity, not replace your Excel knowledge", groups:[
-    {label:"AI for Excel", items:["Formula generation","Formula explanation","Formula debugging","Data analysis","Data cleaning assistance","Dashboard ideas","Chart recommendations","Report insights","Excel documentation"]},
-    {label:"Copilot / AI Tools", items:["Prompting for Excel tasks","Generating formulas","Understanding datasets","Summarizing data","Creating insights","Improving VBA","Power Query assistance"]},
-  ]},
-  {mod:"9", title:"Real-World Projects", sub:"Six industry projects plus a mid-course capstone", groups:[
-    {label:"Projects", items:["Project 1 — Sales MIS","Project 2 — HR Analytics","Project 3 — Finance Report","Project 4 — Inventory Analysis","Project 5 — Customer Support","Project 6 — Marketing Analytics"]},
-    {label:"Capstone Project", items:["Messy real-world dataset","Raw Data → Cleaning → Analysis → Dashboard → Insights → Presentation"]},
-  ]},
-  {mod:"10", title:"MIS Reporting", sub:"How MIS actually works in companies", groups:[
-    {label:"MIS Fundamentals", items:["What is MIS?","Daily MIS","Weekly MIS","Monthly MIS","Management reports","KPI reports"]},
-    {label:"Report Types", items:["Target vs Achievement","Productivity reports","Attendance reports","Sales reports"]},
-    {label:"Automated MIS", items:["Report formatting","Data refresh","Management-ready presentation"]},
-    {label:"Practical", items:["Build a Daily → Weekly → Monthly MIS reporting system"]},
-  ]},
-  {mod:"11", title:"Industry Workflow", sub:"The actual workplace process, step by step", groups:[
-    {label:"The 10-Step Process", items:["1. Receive raw data","2. Understand business requirement","3. Clean data","4. Transform data","5. Analyse","6. Build report","7. Create dashboard","8. Automate repetitive tasks","9. Generate insights","10. Present to management"]},
-  ]},
-  {mod:"12", title:"Professional Excel Standards", sub:"What separates hobbyist Excel from professional Excel", groups:[
-    {label:"File & Formula Practices", items:["File organization","Naming conventions","Formula best practices","Avoiding hardcoded values"]},
-    {label:"Quality & Protection", items:["Error prevention","Data validation","Workbook protection","Version control basics","Documentation"]},
-    {label:"Performance", items:["Dashboard usability","Performance optimization","Large dataset handling","Common Excel mistakes","Professional report formatting"]},
-  ]},
-  {mod:"13", title:"Excel Career Readiness", sub:"Resume, interview prep and 3+ mock interviews", groups:[
-    {label:"Resume", items:["Excel skills section","Project descriptions","ATS-friendly wording"]},
-    {label:"Interview Prep Topics", items:["Excel basics","Advanced formulas","XLOOKUP vs VLOOKUP","INDEX MATCH","PivotTables","Power Query","Dashboard","MIS","Data cleaning","VBA","Scenario-based questions"]},
-    {label:"Mock Interviews (3+)", items:["Technical Excel round","Practical/business scenario round","HR/communication round"]},
-    {label:"Practical Assessment", items:["\u201cCreate an MIS report and present your findings.\u201d"]},
-  ]},
-  {mod:"14", title:"Final Assessment & Certification", sub:"The final industry simulation and certification", groups:[
-    {label:"Final Capstone", items:["Understand requirement","Clean data","Transform data","Analyse data","Build formulas","Create PivotTables","Create dashboard","Generate insights","Present results"]},
-    {label:"Certification", items:["Excel 360 — Basic to Industry-Ready Certificate, on meeting completion criteria"]},
+  {mod:"05", title:"Industry Projects, Capstone & Career Readiness", sub:"6 guided case studies, 1 final capstone and interview preparation", groups:[
+    {label:"Real-World Business Case Studies", items:["Sales MIS","HR Analytics","Finance Report","Inventory Analysis","Customer Support","Marketing Analytics"]},
+    {label:"Final Capstone Project", items:["Real-world business case study","Excel portfolio piece"]},
+    {label:"Career Readiness", items:["Resume guidance","Technical interview preparation","Practical business-scenario interview","HR / communication preparation","3+ mock interviews with personalized feedback"]},
   ]},
 ];
 
@@ -1098,15 +1022,15 @@ const BEFORE = ["Only basic formulas","Manual reporting","Can't handle messy dat
 const AFTER = ["Advanced Excel","Data cleaning","MIS reporting","Pivot analysis","Power Query","Interactive dashboards","Business analysis","Automation","Real-world projects","Interview-ready portfolio"];
 
 const FORMATS = [
-  {t:"1:10 Group Batch", items:["Maximum 10 learners","Live trainer","Interactive sessions","Practical assignments"], hi:false, sub:"For learners who prefer structured group learning"},
+  {t:"1:10 Group Batch", items:["Maximum 10 learners","Live trainer","Interactive sessions","Practical assignments","Structured group learning"], hi:false, sub:"For learners who prefer structured group learning"},
   {t:"1:5 Small Batch", items:["Maximum 5 learners","Higher trainer interaction","Practical learning","Personalized guidance"], hi:true, badge:"Most Popular", sub:"For learners who want more interaction"},
-  {t:"1:1 Personal Mentorship", items:["One learner","Dedicated trainer","Personalized pace","Direct interaction"], hi:false, sub:"For learners who want a completely personalized experience"},
+  {t:"1:1 Personal Mentorship", items:["One learner","Dedicated trainer","Personalized pace","Direct interaction","Completely personalized learning"], hi:false, sub:"For learners who want a completely personalized experience"},
 ];
 
 const DASH_TYPES = ["Sales Dashboard","HR Dashboard","Finance Dashboard","Operations Dashboard","Marketing Dashboard"];
 
 const INCLUDED = [
-  {t:"2 Months Recording Access", d:"Every live session is recorded and stays accessible for 2 months, so you can revisit any topic anytime.", i:"video"},
+  {t:"Recording Access", d:"Every live session is recorded so you can revisit concepts, revise important topics and practice after class — accessible for 2 months.", i:"video"},
   {t:"Interview Preparation", d:"Guided prep covering the Excel and analyst questions companies actually ask.", i:"message-square-text"},
   {t:"3+ Mock Interviews", d:"Technical Excel round, practical business-scenario round and an HR/communication round — with direct feedback.", i:"user-check"},
   {t:"Doubt Support Channel", d:"A dedicated WhatsApp/Discord group for questions between sessions, with a defined response window.", i:"message-circle"},
@@ -1125,15 +1049,12 @@ const TIERS = [
   {cls:"industry", icon:"🚀", t:"Industry-Ready Excel", items:["Power Query","Automation","Business Analysis","Real-world Projects","AI-assisted productivity","Industry simulations"]},
 ];
 
-const OFFER_ITEMS = [
-  {r:"Live Instructor-Led Training", d:"Real-time trainer interaction.", i:"graduation-cap"},
-  {r:"Small Batch Learning", d:"1:10 maximum group format.", i:"users"},
-  {r:"Personalized Learning", d:"1:1 option available.", i:"user-cog"},
-  {r:"Practical Assignments", d:"Concept ke saath practical implementation.", i:"clipboard-check"},
-  {r:"Industry-Oriented Curriculum", d:"Real workplace workflows ke according.", i:"building-2"},
-  {r:"Real-World Projects", d:"Sales, HR, Finance, Marketing, Operations etc.", i:"briefcase"},
-  {r:"Dashboard & MIS Training", d:"Professional reporting and visualization.", i:"layout-dashboard"},
-  {r:"Power Query & Automation", d:"Repetitive Excel work ko efficient banana.", i:"repeat"},
+const WHAT_STUDENTS_GET = [
+  "22–26 Live Instructor-Led Sessions","32+ Hours of Live Training","1 Month Intensive Program","1:1 / 1:5 / 1:10 Learning Options",
+  "Advanced Excel","Advanced Formulas","Power Query","PivotTables & PivotCharts",
+  "MIS Reporting","Data Analysis","Interactive Dashboards","Excel Automation with VBA",
+  "Excel + AI","6 Guided Industry Case Studies","1 Final Capstone Project","Assignments & Practice",
+  "Doubt Support","3+ Mock Interviews","2 Months Recording Access","Certificate"
 ];
 
 const AUDIENCE = [
@@ -1182,8 +1103,16 @@ renderIconCards('whoGrid', WHO_USES);
 renderIconCards('pqTopics', PQ_TOPICS);
 renderIconCards('misTypes', MIS_TYPES);
 renderIconCards('autoGrid', AUTO_ITEMS);
-renderIconCards('offerGrid', OFFER_ITEMS);
 renderIconCards('audienceGrid', AUDIENCE);
+
+// What Students Get — checklist style
+const offerGrid = document.getElementById('offerGrid');
+WHAT_STUDENTS_GET.forEach((c,i)=>{
+  const item = el('div','card check-item reveal');
+  item.style.setProperty('--i', i);
+  item.innerHTML = `<div class="tick" data-lucide="check"></div><div>${c}</div>`;
+  offerGrid.appendChild(item);
+});
 
 // Tier comparison (Why Advanced Excel)
 const tierGrid = document.getElementById('tierGrid');
@@ -1292,7 +1221,7 @@ const projGrid = document.getElementById('projGrid');
 PROJECTS.forEach((p,i)=>{
   const card = el('div','card proj-card reveal');
   card.style.setProperty('--i', i);
-  card.innerHTML = `<div class="pnum">PROJECT ${p.n}</div><h4>${p.t}</h4><div class="proj-flow">${p.f.split(' → ').join('<br>↓ ')}</div>`;
+  card.innerHTML = `<div class="pnum">CASE STUDY ${p.n}</div><h4>${p.t}</h4><div class="proj-flow">${p.f.split(' → ').join('<br>↓ ')}</div>`;
   projGrid.appendChild(card);
 });
 
@@ -1332,7 +1261,7 @@ INCLUDED.forEach((x,i)=>{
 // Why PragnyX differentiators
 renderIconCards('diffGrid', DIFFERENTIATORS);
 
-lucide.createIcons();
+safeCreateIcons();
 
 /* =========================================================
    HERO SPREADSHEET ANIMATION
@@ -1466,11 +1395,11 @@ function showPresentSlide(){
 function presentNext(){ presentIndex = Math.min(SECTIONS.length-1, presentIndex+1); showPresentSlide(); }
 function presentPrev(){ presentIndex = Math.max(0, presentIndex-1); showPresentSlide(); }
 
-document.getElementById('startDemoBtn').addEventListener('click', enterPresentMode);
-document.getElementById('startDemoBtn2').addEventListener('click', enterPresentMode);
-document.getElementById('presNext').addEventListener('click', presentNext);
-document.getElementById('presPrev').addEventListener('click', presentPrev);
-document.getElementById('presExit').addEventListener('click', exitPresentMode);
+document.getElementById('startDemoBtn')?.addEventListener('click', enterPresentMode);
+document.getElementById('startDemoBtn2')?.addEventListener('click', enterPresentMode);
+document.getElementById('presNext')?.addEventListener('click', presentNext);
+document.getElementById('presPrev')?.addEventListener('click', presentPrev);
+document.getElementById('presExit')?.addEventListener('click', exitPresentMode);
 
 window.addEventListener('keydown', (e)=>{
   if(!document.body.classList.contains('present-mode')) return;
@@ -1478,7 +1407,7 @@ window.addEventListener('keydown', (e)=>{
   if(e.key==='ArrowLeft') presentPrev();
   if(e.key==='Escape') exitPresentMode();
 });
-lucide.createIcons();
+safeCreateIcons();
 </script>
 </body>
 </html>
