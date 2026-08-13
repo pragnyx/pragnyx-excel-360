@@ -273,6 +273,62 @@ h1,h2,h3,h4{font-family:var(--display); font-weight:600; letter-spacing:-0.02em;
 
 /* ============ CAPSTONE ============ */
 .capstone{border:1px solid var(--green-700); border-radius:24px; background:linear-gradient(150deg, rgba(63,207,127,0.08), rgba(231,179,77,0.03)); padding:52px;}
+
+/* ---- Certificate showcase ---- */
+.cert-wrap{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+.cert-frame{
+  position:relative; border-radius:20px; padding:14px;
+  background:linear-gradient(160deg, rgba(231,179,77,0.14), rgba(63,207,127,0.06));
+  border:1px solid var(--border-hi);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,0.35);
+}
+.cert-frame::before{
+  content:""; position:absolute; inset:-1px; border-radius:20px; padding:1px;
+  background:linear-gradient(135deg, var(--gold), transparent 40%, var(--green-bright) 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; opacity:.55;
+}
+.cert-frame img{
+  width:100%; display:block; border-radius:12px; background:#fff;
+  cursor:zoom-in; transition:transform .4s cubic-bezier(.16,.8,.24,1);
+}
+.cert-frame:hover img{transform:scale(1.015);}
+.cert-badge{
+  position:absolute; top:-14px; left:24px; display:inline-flex; align-items:center; gap:7px;
+  background:var(--green-900); color:#eafff2; font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; padding:7px 14px; border-radius:100px; border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 10px 24px -8px rgba(0,0,0,0.4);
+}
+.cert-badge span[data-lucide]{width:13px; height:13px;}
+.cert-side .eyebrow{margin-bottom:16px;}
+.cert-side h2{font-size:clamp(26px,3.4vw,38px); margin-bottom:16px;}
+.cert-side p.lead{color:var(--muted); font-size:16px; max-width:460px; margin-bottom:26px;}
+.cert-points{display:flex; flex-direction:column; gap:16px; margin-bottom:30px;}
+.cert-point{display:flex; gap:12px; align-items:flex-start;}
+.cert-point span[data-lucide]{width:19px; height:19px; color:var(--green-bright); flex-shrink:0; margin-top:2px;}
+.cert-point div b{display:block; font-size:14.5px; margin-bottom:2px;}
+.cert-point div span{color:var(--muted); font-size:13.5px;}
+.cert-note{
+  font-family:var(--mono); font-size:11.5px; color:var(--muted-2); border-top:1px solid var(--border);
+  padding-top:16px; line-height:1.6;
+}
+/* lightbox */
+.cert-lightbox{
+  position:fixed; inset:0; z-index:500; background:rgba(6,10,8,0.88); backdrop-filter:blur(6px);
+  display:flex; align-items:center; justify-content:center; padding:40px;
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+.cert-lightbox.open{opacity:1; pointer-events:auto;}
+.cert-lightbox img{max-width:min(920px,92vw); max-height:88vh; border-radius:10px; box-shadow:0 40px 100px -20px rgba(0,0,0,0.6);}
+.cert-lightbox .cl-close{
+  position:absolute; top:26px; right:30px; width:42px; height:42px; border-radius:50%;
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:#fff;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+.cert-lightbox .cl-close:hover{background:rgba(255,255,255,0.16);}
+@media (max-width:880px){
+  .cert-wrap{grid-template-columns:1fr; gap:36px;}
+}
 .cap-badges{display:flex; gap:12px; flex-wrap:wrap; margin:22px 0 8px;}
 
 /* ============ CHECKLIST ============ */
@@ -724,6 +780,44 @@ body.present-mode #exitPresent{display:flex;}
     </div>
   </div>
 </section>
+
+<!-- ============ SECTION — CERTIFICATE ============ -->
+<section id="certificate" class="section" data-trainer="Certificate">
+  <div class="wrap">
+    <div class="cert-wrap">
+      <div class="reveal-scale" style="position:relative;">
+        <span class="cert-badge"><span data-lucide="badge-check"></span>Sample Certificate</span>
+        <div class="cert-frame">
+          <img src="images/excel-certificate.jpg" alt="PragnyX Learning — Excel 360 Certificate of Completion sample" id="certImg" loading="lazy">
+        </div>
+      </div>
+      <div class="cert-side reveal">
+        <span class="eyebrow">What You Walk Away With</span>
+        <h2>Your Excel 360 Certificate of Completion</h2>
+        <p class="lead">On successfully meeting the program's completion criteria, you receive an official, QR-verifiable certificate from PragnyX Learning — proof of a real, industry-ready Excel skillset.</p>
+        <div class="cert-points">
+          <div class="cert-point">
+            <span data-lucide="qr-code"></span>
+            <div><b>QR-Verifiable</b><span>Every certificate carries a unique ID and QR code recruiters can scan to confirm it's genuine.</span></div>
+          </div>
+          <div class="cert-point">
+            <span data-lucide="signature"></span>
+            <div><b>Trainer Signed</b><span>Signed by your trainer and authorized by PragnyX Learning on completion.</span></div>
+          </div>
+          <div class="cert-point">
+            <span data-lucide="calendar-check-2"></span>
+            <div><b>Personalized &amp; Dated</b><span>Carries your name, program duration, training type, and date of completion.</span></div>
+          </div>
+        </div>
+        <div class="cert-note">*Sample shown above. Your certificate is issued with your name, unique Certificate ID and issue date upon meeting the program's completion criteria.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="cert-lightbox" id="certLightbox">
+  <div class="cl-close" id="certLightboxClose"><span data-lucide="x"></span></div>
+  <img src="images/excel-certificate.jpg" alt="Excel 360 Certificate of Completion — enlarged view">
+</div>
 
 <!-- ============ SECTION — WHO IS THIS FOR ============ -->
 <section id="who-is-this-for" class="section" data-trainer="Who Is This For?">
@@ -1408,6 +1502,15 @@ window.addEventListener('keydown', (e)=>{
   if(e.key==='Escape') exitPresentMode();
 });
 safeCreateIcons();
+
+/* ---- Certificate lightbox ---- */
+const certImg = document.getElementById('certImg');
+const certLightbox = document.getElementById('certLightbox');
+const certLightboxClose = document.getElementById('certLightboxClose');
+certImg?.addEventListener('click', ()=> certLightbox.classList.add('open'));
+certLightboxClose?.addEventListener('click', ()=> certLightbox.classList.remove('open'));
+certLightbox?.addEventListener('click', (e)=>{ if(e.target===certLightbox) certLightbox.classList.remove('open'); });
+window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') certLightbox?.classList.remove('open'); });
 </script>
 </body>
 </html>
