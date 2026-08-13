@@ -294,7 +294,9 @@ h1,h2,h3,h4{font-family:var(--display); font-weight:600; letter-spacing:-0.02em;
 }
 .cert-frame:hover img{transform:scale(1.015);}
 .cert-badge{
-  position:absolute; top:-14px; left:24px; display:inline-flex; align-items:center; gap:7px;
+  position:absolute;
+  z-index:10;
+  top:-14px; left:24px; display:inline-flex; align-items:center; gap:7px;
   background:var(--green-900); color:#eafff2; font-family:var(--mono); font-size:11px; letter-spacing:.08em;
   text-transform:uppercase; padding:7px 14px; border-radius:100px; border:1px solid rgba(255,255,255,0.15);
   box-shadow:0 10px 24px -8px rgba(0,0,0,0.4);
@@ -843,7 +845,6 @@ body.present-mode #exitPresent{display:flex;}
     <div class="quote-block reveal" style="margin-top:32px;">
       Practical Assessment: "Create an MIS report and present your findings."
     </div>
-    <p class="reveal" style="color:var(--muted-2); font-size:13px; max-width:680px; margin-top:22px;">Excel 360 is designed to help learners build practical Excel skills, project experience and interview confidence for Excel/MIS/Data-related roles such as MIS Executive, MIS Analyst, Reporting Executive, Data Analyst (Excel-focused), Operations Analyst and Business Analyst (Excel-focused). It does not guarantee employment or salary outcomes.</p>
   </div>
 </section>
 
